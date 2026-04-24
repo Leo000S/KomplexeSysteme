@@ -1,0 +1,94 @@
+\documentclass{article}
+\usepackage[english]{babel}
+
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage{booktabs}
+\setlength{\parindent}{0pt}
+
+\title{Physics of Complex Systems: Exercise }
+\author{Leopold Schaller and Daniel Lender}
+
+\begin{document}
+\maketitle
+
+\section*{Task 2.1: Drunk Drivers}
+\subsection*{(a)}
+The second table displays the conditional probability
+\begin{align}
+    P \left( female \mid age \right)
+\end{align}
+an we can calculate the total probability with summing over all age intervalls. We obtain
+\begin{align}
+    P \left( female \right) &= \sum_{ age} P \left( total \right) \cdot P \left( female \mid age \right)\\
+                              &= 12.14 \%
+\end{align}
+
+\subsection*{(b)}
+    Bayes formula is
+\begin{align}
+    P \left( A \mid B \right) = P \left( B \mid A \right) \cdot \frac{P \left( A  \right)}{P \left( B \right)}
+\end{align}
+    and is used to exchanges the conditions in conditional probabilities. For our example, we have to use the formula:
+\begin{align}
+    P \left( age \mid female \right) = P \left( female \mid age \right) \cdot \frac{P \left( age  \right)}{P \left( female \right)}
+\end{align}
+    We can calculate this now by using the values from the first table and the calculated value $P \left( female \right)$ and obtain the folowing table:
+\\
+\begin{table}[h]
+\centering
+\begin{tabular}{l|ccccccc}
+\toprule
+Age group & 18--24 & 25--34 & 35--44 & 35--54 & 55--64 & $>65$ & Sum \\
+\midrule
+$P(A)$ & 26.1 & 22.4 & 18.9 & 18.5 & 8.7 & 5.4 & 100 \\
+$P(B \mid A)$ & 9.1 & 11.9 & 15.2 & 14.4 & 12.3 & 9.2 & -- \\
+$P(A \mid B)$ & 19.6 & 21.9 & 23.7 & 21.9 & 8.8 & 4.1 & 100 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Task 2.2: Poisson distribution}
+We start with the bonomial distribution
+\[
+P(X = k) = \binom{N}{k} p^k (1 - p)^{N-k}
+\]
+and want to calculate the Poisson distribution.
+\subsection*{(a)}
+The term $(1 - p)^{N-k}$ is approximated as follows:
+\begin{align}
+\lim_{N \to \infty} (1 - p)^{N-k} &= \lim_{N \to \infty}
+\left[
+\cdot \left(1 - \frac{\lambda}{N}\right)^N
+\cdot \left(1 - \frac{\lambda}{N}\right)^{-k}
+\right] \\
+\\
+&=
+\cdot \underbrace{\lim_{N \to \infty} \left(1 - \frac{\lambda}{N}\right)^N}_{=e^{-\lambda}}
+\cdot \underbrace{\lim_{N \to \infty} \left(1 - \frac{\lambda}{N}\right)^{-k}}_{=1} \\
+\\
+&= e^{-\lambda}
+\end{align}
+
+\subsection*{(b)}
+The term $\binom{N}{k} p^k$ is approximated using the definition of the binomial coefficient:
+\begin{align}
+\lim_{N \to \infty} \frac{N!}{k!(N-k)!}
+\cdot \frac{\lambda^k}{N^k}
+&= \lim_{N \to \infty}
+\left[
+\frac{N!}{(N-k)! \, N^k}
+\cdot \frac{\lambda^k}{k!}
+\right] \\
+\\
+&= \frac{\lambda^k}{k!}
+\cdot \underbrace{\lim_{N \to \infty} \frac{N!}{(N-k)! \, N^k}}_{=1}
+\\
+&= \frac{\lambda^k}{k!}
+\end{align}
+
+\end{document}
