@@ -91,6 +91,51 @@ The term $\binom{N}{k} p^k$ is approximated using the definition of the binomial
 &= \frac{\lambda^k}{k!}
 \end{align}
 
+\subsection*{(c)}
+    If we combine the results of (a) and (b), we obtain the Poisson distribution:
+    \begin{align}
+      \lim_{N \to \infty} \underbrace{\binom{N}{k} p^k_}_{\frac{\lambda^k}{k!}} \underbrace{(1 - p)^{N-k}}_{e^{-\lambda}} = \frac{\lambda^k}{k!} \cdot  e^{-\lambda}
+    \end{align}
+
+\subsection*{(d)}
+For normalization, we have to perform the sum over all events $k$ and should obtain a value of $1$. Using the series expansion of the exponential function, we get the normalization condition. This is shown in the following:
+\begin{align}
+\sum_{k=0}^{\infty} P(X = k)
+&= \sum_{k=0}^{\infty} \frac{\lambda^k}{k!} e^{-\lambda} \\
+&= e^{-\lambda} \sum_{k=0}^{\infty} \frac{\lambda^k}{k!} \\
+&= e^{-\lambda} \cdot e^{\lambda} \\
+&= 1
+\end{align}
+
+\subsection*{(e)}
+The moment generating $M_X(t)$ function is the expectation value of $e^{tX}$, where $X$ is the random variable. In our case, this variable follows the Poisson distribution.
+\begin{align}
+M_X(t)
+&= E(e^{tX}) \\
+&= \sum_{k=0}^{\infty} e^{tk} P(X=k) \\
+&= \sum_{k=0}^{\infty} e^{tk} \frac{\lambda^k}{k!} e^{-\lambda} \\
+&= e^{-\lambda} \sum_{k=0}^{\infty} \frac{(\lambda e^t)^k}{k!} \\
+&= e^{-\lambda} e^{\lambda e^t} \\
+&= e^{\lambda(e^t-1)}.
+\end{align}
+
+The cumulant-generating function $C_X(t)$ is the logarithm of $M_X(t)$, so it is simply
+\begin{align}
+    C_X(t) =\lambda \left( e^t - 1 \right) \text{ .}
+\end{align}
+
+\subsection*{(f)}
+If we want to determine an cumulant $\kappa_n$ of n'th order, we have to use the following relation.
+\begin{align}
+\kappa_n
+&= \frac{d^n}{dt^n} C_X(t) \right|_{t=0} \\
+&= \frac{d^n}{dt^n} \lambda \left( e^t - 1 \right) \right|_{t=0} \\
+&= \frac{d^n}{dt^n} \lambda e^t  \right|_{t=0} \\
+&= \lambda
+\end{align}
+We obtain, that for the Poisson distribution all cumulants are the same. This means that especially the expectation value $E(X)$ and the variance $Var(X)$ are the same.
+
+
 \section*{Task 2.3: Reconstruct probabilities from given moments}
 \subsection*{(a)}
 We have three unknown variables, thus we need three equations to determine the variables (here probabilities) unequivocally. The first equation is the normalization boundary, for the second and the third equation one moment each is needed. Therefore we need two moments to determine $P_a$, $P_b$ and $P_c$.
