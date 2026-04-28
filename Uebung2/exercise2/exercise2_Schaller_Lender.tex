@@ -91,4 +91,39 @@ The term $\binom{N}{k} p^k$ is approximated using the definition of the binomial
 &= \frac{\lambda^k}{k!}
 \end{align}
 
+\section*{Task 2.3: Reconstruct probabilities from given moments}
+\subsection*{(a)}
+We have three unknown variables, thus we need three equations to determine the variables (here probabilities) unequivocally. The first equation is the normalization boundary, for the second and the third equation one moment each is needed. Therefore we need two moments to determine $P_a$, $P_b$ and $P_c$.
+
+\subsection*{(b)}
+\begin{align}
+\left.
+\begin{aligned}
+P_a+P_b+P_c=&1\\
+P_a+3P_b+5P_c=&M1\\
+P_a+9P_b+25P_c=&M2
+\end{aligned}
+\right\}
+=\begin{pmatrix}
+1&1&1\\
+1&3&5\\
+1&9&25
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+P_a\\
+P_b\\
+P_c
+\end{pmatrix}
+=
+\begin{pmatrix}
+1\\
+M1\\
+M2
+\end{pmatrix}
+\end{align}
+\subsection*{(c)}
+
+\subsection*{(d)}
+
 \end{document}
