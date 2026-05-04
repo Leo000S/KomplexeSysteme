@@ -35,7 +35,7 @@
 \begin{align}
     \dot{P}_c(t)=\sum_{c'}P_{c'}(t)\ \omega_{c'\rightarrow c}-P_{c}(t)\sum_{c''}\ \omega_{c\rightarrow c''}
 \end{align}
-to write the whole term as a sum over $c'$, we use the Kronecker delta $\delta_{c',c}$. With $\delta_{c',c}P_c=\delta_{c',c}P_{c'}$ we get
+to write the whole term as a sum over $c'$, we use the Kronecker delta $\delta_{c',c}$. With $\delta_{c',c}P_c=\delta_{c',c}P_{c'}$ we get:
 \begin{align}
     \dot{P}_c(t)&=\sum_{c'}P_{c'}(t)\ \omega_{c'\rightarrow c}- \sum_{c'}\delta_{c',c}\Big(\sum_{c''}\ \omega_{c\rightarrow c''}\Big)P_{c'}(t)\\
     &=\sum_{c'}\Big(\omega_{c'\rightarrow c}- \delta_{c',c}\sum_{c''}\omega_{c\rightarrow c''}\Big)P_{c'}(t)
@@ -46,22 +46,61 @@ Now we expand at the Operator representation of the probability vector:
     \Rightarrow \small\braket*{c}{\dot{P}}&=-\mel{c}{\mathcal{L}}{P}=-\sum_{c'}\mel{c}{\mathcal{L}}{c'}P_{c'}(t)\\
     &=\dot{P}_{c}(t)
 \end{align}
-A comparison of both results shows
+A comparison of both results shows:
 \begin{align}
     -\mel{c}{\mathcal{L}}{c'}=\omega_{c'\rightarrow c}- \delta_{c',c}\sum_{c''}\omega_{c\rightarrow c''}
 \end{align}
-no we relabel the indices ($c\rightarrow c', c'\rightarrow c$) and get what we should show:
+no we relabel the indices ($c\rightarrow c', c'\rightarrow c$) and get the expression we should prove:
 \begin{align}
     \mel{c}{\mathcal{L}}{c'}=-\omega_{c\rightarrow c'}- \delta_{c,c'}\sum_{c''}\omega_{c\rightarrow c''}
 \end{align}
 
-
 \subsection*{(b)}
+For the given transition rates, the Liouville Operator is:
+\begin{align}
+    \mathcal{L}=\begin{pmatrix}
+        3.5 & -1 & 0\\
+        -3 & 3 & -3 \\
+        -0.5 & -2 & 3
+    \end{pmatrix}
+\end{align}
 
 \subsection*{(c)}
+With the following code we calculated for the right eigenvector $(0.4, 1.4, 1)^t$
+and for the left eigenvector $(1, 1, 1)$
+\begin{minted}{python}
+    import sympy as sp
+    # Define the matrix
+    M = sp.Matrix([ [3.5, -1, 0],
+                    [-3, 3, -3],
+                    [-0.5, -2, 3]])
+    # Calculate eigenvectors for eigenvalue 0
+    right_eigenvectors = M.nullspace()
+    left_eigenvectors = M.T.nullspace()
+
+    sp.pprint(right_eigenvectors)
+    sp.pprint(left_eigenvectors)
+\end{minted}
 
 \subsection*{(d)}
+
+ \begin{align}
+     e_r=
+     \begin{pmatrix}
+        0.4\\
+        1.4\\
+        1
+    \end{pmatrix}
+     \cdot\frac{1}{\sqrt{3.12}}
+     \approx
+    \begin{pmatrix}
+        0.226\\
+        0.793\\
+        0.566
+    \end{pmatrix}
+\end{align}
 
 \end{document}
 
 # latexmk -pdf -shell-escape -output-directory=output Uebung2/exercise2/exercise2_Schaller_Lender.tex
+
