@@ -181,6 +181,9 @@ B = sp.Matrix([b1, M1, M2])
 
 # 3. Solve the system Ax = B
 x = A.solve(B)
+
+numeric_x = x.subs({b1: 1})
+sp.pprint(numeric_x)
 \end{minted}
 This results in the following formulas for the probabilities:
 \begin{align}
