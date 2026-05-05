@@ -20,7 +20,19 @@
 
 \section*{Task 3.1: Central Limit Theorem}
 \subsection*{(a)}
-
+\begin{align}
+    \text{for N=1:}\hspace{0.5cm} p_{Z_1}(z)&=\frac{z^{1-1}}{(1-1)!}e^{-z}=\frac{1}{1}e^{-z}=e^{-z}=p_X(z)\\
+    \text{assume for k$\ge$ 1:}\hspace{0.5cm} p_{Z_k}(z)&=\frac{z^{k-1}}{(k-1)!}e^{-z}\\
+    \text{for k+1:}\hspace{0.5cm}  p_{Z_{k+1}}(z)&= (p_{Z_k}\ast p_X)(z)=\int_{-\infty}^{\infty}p_{Z_k}(x)\ p_X(z-x)\ dx
+\end{align}
+p(x) is only non zero for $x\ge0$, therefore p(z-x) is only non zero for $z-x\ge0\rightarrow z\ge x$. With this information we can plug in $p_{Z_k}(x)$ and rewrite the integral:
+\begin{align}
+     p_{Z_{k+1}}(z)&=\int_{-\infty}^{\infty}p_{Z_k}(x)\ p_X(z-x)\ dx\\
+     &=\int_0^z \frac{x^{k-1}}{(k-1)!}e^{-x} \cdot e^{-(z-x)}\ dx\\
+     &=\frac{e^{-z}}{(k-1)!}\int_0^zx^{k-1} dx \\
+     &=\frac{e^{-z}}{(k-1)!}\frac{z^{k}}{k}=\frac{z^{k}}{k!}e^{-z}
+\end{align}
+Now the proof via induction is complete.
 \subsection*{(b)}
 
 \subsection*{(c)}
