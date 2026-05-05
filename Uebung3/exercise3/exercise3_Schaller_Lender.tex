@@ -25,7 +25,7 @@
     \text{assume for k$\ge$ 1:}\hspace{0.5cm} p_{Z_k}(z)&=\frac{z^{k-1}}{(k-1)!}e^{-z}\\
     \text{for k+1:}\hspace{0.5cm}  p_{Z_{k+1}}(z)&= (p_{Z_k}\ast p_X)(z)=\int_{-\infty}^{\infty}p_{Z_k}(x)\ p_X(z-x)\ dx
 \end{align}
-p(x) is only non zero for $x\ge0$, therefore p(z-x) is only non zero for $z-x\ge0\rightarrow z\ge x$. With this information we can plug in $p_{Z_k}(x)$ and rewrite the integral:
+p(x) is only non zero for $x\ge0$, therefore p(z-x) is only non zero for $z-x\ge0\rightarrow z\ge x$. With this information we can plug $p_{Z_k}(x)$ in and rewrite the integral:
 \begin{align}
      p_{Z_{k+1}}(z)&=\int_{-\infty}^{\infty}p_{Z_k}(x)\ p_X(z-x)\ dx\\
      &=\int_0^z \frac{x^{k-1}}{(k-1)!}e^{-x} \cdot e^{-(z-x)}\ dx\\
@@ -44,18 +44,18 @@ mean:
 \end{align}
 variance:
 \begin{align}
-    m_2 &=\int_0^{\infty} z^2\cdot\frac{z^{N-1}}{(N-1)!}e^{-z} dz &= \frac{\Gamma(N+2)}{(N-1)!}=\frac{(N+1)!}{(N-1)!}=N(N+1)\\
+    m_2 &=\int_0^{\infty} z^2\cdot\frac{z^{N-1}}{(N-1)!}e^{-z} dz = \frac{\Gamma(N+2)}{(N-1)!}=\frac{(N+1)!}{(N-1)!}=N(N+1)\\
     \sigma^2 &= m_2 - m_1^2 = (N+1)N-N^2= N
 \end{align}
 \subsection*{(c)}
-Shift to origin $\rightarrow -m_1$, unit norm and variance $\rightarrow /\sigma$:
+Shift to origin $\rightarrow -m_1$, unit norm and variance $\rightarrow 1/\sigma$:
     \begin{align}
-        \tilde{Z}=\frac{Z_N-m_1}{\sigma}=\frac{Z_N-N}{\sqrt{N}}
+        \tilde{Z}_N=\frac{Z_N-m_1}{\sigma}=\frac{Z_N-N}{\sqrt{N}}
     \end{align}
 \subsection*{(d)}
 The MGF of $\tilde{Z}_N$ is:
 \begin{align}
-    M_{\tilde{Z}_N}=\big<{e^{t\tilde{Z}_N}}\big>=\Big<{e^{t\left(\frac{{Z}_N-N}{\sqrt{N}}\right)}}\Big>= e^{-t\sqrt{N}}+M_{Z_N}\left(\frac{t}{\sqrt{N}}\right)
+    M_{\tilde{Z}_N}(t)=\big<{e^{t\tilde{Z}_N}}\big>=\Big<{e^{t\left(\frac{{Z}_N-N}{\sqrt{N}}\right)}}\Big>= e^{-t\sqrt{N}}+M_{Z_N}\left(\frac{t}{\sqrt{N}}\right)
 \end{align}
 The MGF of $Z_N$ is:
 \begin{align}
@@ -63,19 +63,19 @@ The MGF of $Z_N$ is:
     \end{align}
      now substitute with $y=z(1-t)$
     \begin{align}
-    M_{Z_N}&=\frac{1}{(N-1)!}\int_0^\infty \frac{y^{N-1}}{(1-t)^N}e^{-y} dy=\frac{1}{(N-1)!}\frac{\Gamma(N)}{(1-t)^N}=(1-t)^{-N}\\
+    M_{Z_N}(t)&=\frac{1}{(N-1)!}\int_0^\infty \frac{y^{N-1}}{(1-t)^N}e^{-y} dy=\frac{1}{(N-1)!}\frac{\Gamma(N)}{(1-t)^N}=(1-t)^{-N}\\
     &\Rightarrow M_{Z_N}\left(\frac{t}{\sqrt{N}}\right)=\left(1-\frac{t}{\sqrt{N}}\right)^{-N}
 \end{align}
 Now we can calculate the CGF $ K_{\tilde{Z}_N}$:
 \begin{align}
-    K_{\tilde{Z}}&= \text{ln}\left(M_{\tilde{Z}_N}\right)=-t\sqrt{N}+\text{ln}\left(M_{Z_N}\left(\frac{t}{\sqrt{N}}\right)\right)= -t\sqrt{N}-N\ \left(\text{ln}(\sqrt{N}-t)-\text{ln}(\sqrt{N})\right)\\
+    K_{\tilde{Z}}(t)&= \text{ln}\left(M_{\tilde{Z}_N}\right)=-t\sqrt{N}+\text{ln}\left(M_{Z_N}\left(\frac{t}{\sqrt{N}}\right)\right)= -t\sqrt{N}-N\ \left(\text{ln}(\sqrt{N}-t)-\text{ln}(\sqrt{N})\right)\\
     &=\frac{1}{2}N\ \text{ln}(N)-t\sqrt{N}-N\ \text{ln}(\sqrt{N}-t)
 \end{align}
 which we should show.
 \subsection*{(e)}
 Rewrite the CGF:
 \begin{align}
-        K_{\tilde{Z}}=\frac{1}{2}N\ \text{ln}(N)-t\sqrt{N}-N\ \text{ln}(\sqrt{N}-t)=-t\sqrt{N}-N\ \text{ln}\left(1-\frac{t}{\sqrt{N}}\right)
+        K_{\tilde{Z}}(t)=\frac{1}{2}N\ \text{ln}(N)-t\sqrt{N}-N\ \text{ln}(\sqrt{N}-t)=-t\sqrt{N}-N\ \text{ln}\left(1-\frac{t}{\sqrt{N}}\right)
 \end{align}
 and now use the Taylor expansion $ln(1-x)=-\sum_{n=1}^\infty \frac{x^n}{n}$:
 \begin{align}
@@ -110,7 +110,7 @@ to write the whole term as a sum over $c'$, we use the Kronecker delta $\delta_{
 Now we expand at the Operator representation of the probability vector:
 \begin{align}
     \ket{{P}}&=\sum_{c'} P_{c'}(t)\ket{c'}\\
-    \Rightarrow \small\braket*{c}{\dot{P}}&=-\mel{c}{\mathcal{L}}{P}=-\sum_{c'}\mel{c}{\mathcal{L}}{c'}P_{c'}(t)\\
+    \Rightarrow \braket*{c}{\dot{P}}&=-\mel{c}{\mathcal{L}}{P}=-\sum_{c'}\mel{c}{\mathcal{L}}{c'}P_{c'}(t)\\
     &=\dot{P}_{c}(t)
 \end{align}
 A comparison of both results shows:
@@ -143,10 +143,8 @@ and for the left eigenvector $(1, 1, 1)$
                     [-0.5, -2, 3]])
     # Calculate eigenvectors for eigenvalue 0
     right_eigenvectors = M.nullspace()
-    left_eigenvectors = M.T.nullspace()
 
     sp.pprint(right_eigenvectors)
-    sp.pprint(left_eigenvectors)
 \end{minted}
 
 \subsection*{(d)}
@@ -168,6 +166,3 @@ and for the left eigenvector $(1, 1, 1)$
 \end{align}
 
 \end{document}
-
-# latexmk -pdf -shell-escape Uebung3/exercise3/exercise3_Schaller_Lender.tex
-
