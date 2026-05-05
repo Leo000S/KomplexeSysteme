@@ -34,12 +34,67 @@ p(x) is only non zero for $x\ge0$, therefore p(z-x) is only non zero for $z-x\ge
 \end{align}
 Now the proof via induction is complete.
 \subsection*{(b)}
-
+Normalization:
+\begin{align}
+    \int_0^{\infty} \frac{z^{N-1}}{(N-1)!}e^{-z} dz &= \frac{\Gamma(N)}{(N-1)!}=\frac{(N-1)!}{(N-1)!}=1
+\end{align}
+mean:
+\begin{align}
+    m_1=\int_0^{\infty} z\cdot\frac{z^{N-1}}{(N-1)!}e^{-z} dz &= \frac{\Gamma(N+1)}{(N-1)!}=\frac{(N)!}{(N-1)!}=N
+\end{align}
+variance:
+\begin{align}
+    m_2 &=\int_0^{\infty} z^2\cdot\frac{z^{N-1}}{(N-1)!}e^{-z} dz &= \frac{\Gamma(N+2)}{(N-1)!}=\frac{(N+1)!}{(N-1)!}=N(N+1)\\
+    \sigma^2 &= m_2 - m_1^2 = (N+1)N-N^2= N
+\end{align}
 \subsection*{(c)}
-
+Shift to origin $\rightarrow -m_1$, unit norm and variance $\rightarrow /\sigma$:
+    \begin{align}
+        \tilde{Z}=\frac{Z_N-m_1}{\sigma}=\frac{Z_N-N}{\sqrt{N}}
+    \end{align}
 \subsection*{(d)}
-
+The MGF of $\tilde{Z}_N$ is:
+\begin{align}
+    M_{\tilde{Z}_N}=\big<{e^{t\tilde{Z}_N}}\big>=\Big<{e^{t\left(\frac{{Z}_N-N}{\sqrt{N}}\right)}}\Big>= e^{-t\sqrt{N}}+M_{Z_N}\left(\frac{t}{\sqrt{N}}\right)
+\end{align}
+The MGF of $Z_N$ is:
+\begin{align}
+    M_{Z_N}(t)&=\big<e^{tz}\big>= \int_0^\infty e^{tz} \frac{z^{N-1}}{(N-1)!}e^{-z} dz =\frac{1}{(N-1)!}\int_0^\infty z^{N-1}e^{z(t-1)} dz
+    \end{align}
+     now substitute with $y=z(1-t)$
+    \begin{align}
+    M_{Z_N}&=\frac{1}{(N-1)!}\int_0^\infty \frac{y^{N-1}}{(1-t)^N}e^{-y} dy=\frac{1}{(N-1)!}\frac{\Gamma(N)}{(1-t)^N}=(1-t)^{-N}\\
+    &\Rightarrow M_{Z_N}\left(\frac{t}{\sqrt{N}}\right)=\left(1-\frac{t}{\sqrt{N}}\right)^{-N}
+\end{align}
+Now we can calculate the CGF $ K_{\tilde{Z}_N}$:
+\begin{align}
+    K_{\tilde{Z}}&= \text{ln}\left(M_{\tilde{Z}_N}\right)=-t\sqrt{N}+\text{ln}\left(M_{Z_N}\left(\frac{t}{\sqrt{N}}\right)\right)= -t\sqrt{N}-N\ \left(\text{ln}(\sqrt{N}-t)-\text{ln}(\sqrt{N})\right)\\
+    &=\frac{1}{2}N\ \text{ln}(N)-t\sqrt{N}-N\ \text{ln}(\sqrt{N}-t)
+\end{align}
+which we should show.
 \subsection*{(e)}
+Rewrite the CGF:
+\begin{align}
+        K_{\tilde{Z}}=\frac{1}{2}N\ \text{ln}(N)-t\sqrt{N}-N\ \text{ln}(\sqrt{N}-t)=-t\sqrt{N}-N\ \text{ln}\left(1-\frac{t}{\sqrt{N}}\right)
+\end{align}
+and now use the Taylor expansion $ln(1-x)=-\sum_{n=1}^\infty \frac{x^n}{n}$:
+\begin{align}
+        K_{\tilde{Z}}(t)&=-t\sqrt{N}+N\ \sum_{n=1}^\infty\frac{1}{n}\left(\frac{t}{\sqrt{N}}\right)^n= -t\sqrt{N}+N\ \left(\frac{-t}{\sqrt{N}} \sum_{n=2}^\infty\frac{1}{n}\frac{t^n}{N^{\frac{n}{2}}}\right)\\
+        &=\sum_{n=2}^\infty\frac{N^{1-\frac{n}{2}}}{n}t^n
+\end{align}
+by definition:
+\begin{align}
+    K_{\tilde{Z}}(t)= \sum_{n=1}^\infty \kappa_n\frac{t^n}{n!}
+\end{align}
+matching the coefficients of $t^n$ yields the cumulants:
+\begin{align}
+    \kappa_1&=0\\
+    \kappa_n&=(n-1)!\ N^{1-\frac{n}{2}}\\
+    \Rightarrow& \kappa_2K_{\tilde{Z}}=1!\ N^{1-1}= 1\\
+    \kappa_k&= \mathcal{O}\left(N^{-\frac{1}{2}}\right) \hspace{0.5cm}\text{for k $>$ 2}\\
+    \Rightarrow &\text{lim}_{N\rightarrow\infty}\kappa_k=0
+\end{align}
+
 
 \section*{Task 3.2: Vector notation and Liouville operator}
 \subsection*{(a)}
