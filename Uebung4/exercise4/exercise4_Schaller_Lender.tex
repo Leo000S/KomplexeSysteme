@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[english]{babel}
+
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage{booktabs}
+\setlength{\parindent}{0pt}
+
+\title{Physics of Complex Systems: Exercise }
+\author{Leopold Schaller and Daniel Lender}
+
+\begin{document}
+\maketitle
+
+\section*{Task 4.1: Convolution product}
+\subsection*{(a)}
+\subsection*{(a) Characteristic function}
+
+The probability density $p(x)$ is given and its characteristic function will be calculated via
+
+\[
+\varphi(t) = E[e^{itX}]
+= \int_{-\infty}^{\infty} e^{itx} p(x)\, dx.
+\]
+
+As $p(x)=0$ is valid for $x<0$, we will integrate from 0 to $\infty$.
+\[
+\varphi(t)
+= \int_0^\infty e^{itx} w e^{-wx}\, dx = w \int_0^\infty e^{-(w - it)x}\, dx.
+\]
+
+For $\mathrm{Re}(w-it)=w>0$ and with $a = w - it$ we obtain
+\[
+\int_0^\infty e^{-ax}\, dx = \frac{1}{a} = \frac{1}{w - it}.
+\]
+Finally, we pobtain the characteristic function
+\[
+\boxed{
+\varphi(t)
+= \frac{w}{w - it}.
+}
+\]
+
+\subsection*{(b)}
+
+\subsection*{(c)}
+
+\subsection*{(d)}
+
+
+\section*{Task 4.2: Harmonic oscillator}
+\subsection*{(a)}
+
+\subsection*{(b)}
+
+\subsection*{(c)}
+
+\subsection*{(d)}
+
+\end{document}
+
+
+# latexmk -pdf -shell-escape -output-directory=out Uebung4/exercise4/exercise4_Schaller_Lender.tex

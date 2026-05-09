@@ -66,7 +66,7 @@ The MGF of $Z_N$ is:
     M_{Z_N}(t)&=\frac{1}{(N-1)!}\int_0^\infty \frac{y^{N-1}}{(1-t)^N}e^{-y} dy=\frac{1}{(N-1)!}\frac{\Gamma(N)}{(1-t)^N}=(1-t)^{-N}\\
     &\Rightarrow M_{Z_N}\left(\frac{t}{\sqrt{N}}\right)=\left(1-\frac{t}{\sqrt{N}}\right)^{-N}
 \end{align}
-Now we can calculate the CGF $ K_{\tilde{Z}_N}$:
+Now we can calculate the CGF $ K_{\tilde{Z}}$:
 \begin{align}
     K_{\tilde{Z}}(t)&= \text{ln}\left(M_{\tilde{Z}_N}\right)=-t\sqrt{N}+\text{ln}\left(M_{Z_N}\left(\frac{t}{\sqrt{N}}\right)\right)= -t\sqrt{N}-N\ \left(\text{ln}(\sqrt{N}-t)-\text{ln}(\sqrt{N})\right)\\
     &=\frac{1}{2}N\ \text{ln}(N)-t\sqrt{N}-N\ \text{ln}(\sqrt{N}-t)
@@ -166,3 +166,5 @@ and for the left eigenvector $(1, 1, 1)$
 \end{align}
 
 \end{document}
+
+# latexmk -pdf -shell-escape Uebung3/exercise3/exercise3_Schaller_Lender.tex
