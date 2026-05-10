@@ -19,7 +19,6 @@
 
 \section*{Task 4.1: Convolution product}
 \subsection*{(a)}
-\subsection*{(a) Characteristic function}
 
 The probability density $p(x)$ is given and its characteristic function will be calculated via
 
@@ -46,12 +45,110 @@ Finally, we pobtain the characteristic function
 }
 \]
 
-\subsection*{(b)}
+\subsection*{(b) and (c)}
 
-\subsection*{(c)}
+The two fold convolution is defined as
+\[
+p^{*2}_{(x)} = (p * p)(x) = \int_0^x p(y)\,p(x-y)\,dy.
+\]
+Higher orders are calculated by the same formula, using
+\[
+    (p * p * p)(x) = p^{*3}_{(x)} = (p * p^{*2}_{(x)})(x) \text{ and } p^{*N}_{(x)} = (p * p^{*N-1}_{(x)})(x)
+\]
+
+We calculate $p^{*2}_{(x)}$ explicitly and get
+\[
+(p * p)(x)
+= \int_0^x w e^{-wy}\, w e^{-w(x-y)}\,dy = w^2 e^{-wx} \int_0^x dy = w^2 x e^{-wx}
+\]
+For the three fold convolution product, we get
+\[
+ p^{*3}_{(x)} = \int_0^x w^2 y e^{-wy} \cdot w e^{-w(x-y)} dy = w^3 e^{-wx} \int_0^x y\, dy = \frac{w^3 x^2}{2} e^{-wx} .
+\]
+Comparing the two solutions
+\[
+p^{*1}(x)=w e^{-wx}, \quad
+p^{*2}(x)=w^2 x e^{-wx}, \quad
+p^{*3}(x)=\frac{w^3 x^2}{2} e^{-wx}.
+\]
+we might observe a systematic behaviour according to
+\[
+p^{*N}(x)
+=
+\frac{w^N x^{N-1}}{(N-1)!}
+e^{-wx}.
+\]
+
+because the exponential $e^y$ part will cancel out every time and what remains is an integral over a polynomial,
+which increases its power by one in every convolution step.
+To show this guess, we do a prove via induction:
+\\
+Assume that for some $N$ the formula holds:
+\[
+p^{*N}(x)
+=
+\frac{w^N x^{N-1}}{(N-1)!}
+e^{-wx}.
+\]
+
+We now compute the $(N+1)$-fold convolution:
+\[
+p^{*(N+1)}(x)
+=
+\int_0^x p^{*N}(y)\, p(x-y)\, dy.
+\]
+
+Insert the induction hypothesis and $p(x)=w e^{-wx}$:
+\[
+=
+\int_0^x \frac{w^N y^{N-1}}{(N-1)!} e^{-wy} \cdot w e^{-w(x-y)} \, dy
+= \frac{w^{N+1}}{(N-1)!} e^{-wx} \int_0^x y^{N-1}\, dy.
+\]
+
+The remaining integral evaluates to
+\[
+\int_0^x y^{N-1}\, dy
+=
+\frac{x^N}{N}.
+\]
+
+Hence,
+\[
+p^{*(N+1)}(x)
+=
+\frac{w^{N+1}}{(N-1)!}
+\frac{x^N}{N} e^{-wx} =
+\frac{w^{N+1} x^N}{N!}
+e^{-wx}.
+\]
+
+\[
+p^{*(N+1)}(x)
+=
+\frac{w^{N+1} x^N}{N!}
+e^{-wx}.
+\]
+
+This proves the formula by induction.
 
 \subsection*{(d)}
 
+For a one fold probability distribution $p(x) = w \, e-{-wx}$ we can calculate the expectation value and the variance to
+\[
+    \mu_1 = \frac{1}{w} \text{ and } \sigma_1^2 = \frac{1}{w^2}
+\]
+As the experiment is statistically independent, we will obtain for $p^{*(N)}(x)$
+\[
+    \mu_N = \frac{N}{w} \text{ and } \sigma_N^2 = \frac{N}{w^2}
+\]
+With $\sigma_N$ and $\mu_N$, we can built a normal distribution and compare it to the probability density $p^{*(N)}(x)$, which is shown in Fig. \ref{FigProbdis} for N = 100 and 50.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Prob_distribution.png}
+    \caption{Histogram for K=20 and one million generated random numbers}
+    \label{FigProbdis}
+\end{figure}
+Both curves match very good to each other, showing the Central Limit Theorem works.
 
 \section*{Task 4.2: Harmonic oscillator}
 \subsection*{(a)}
