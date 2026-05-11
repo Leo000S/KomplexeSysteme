@@ -152,13 +152,69 @@ Both curves match very good to each other, showing the Central Limit Theorem wor
 
 \section*{Task 4.2: Harmonic oscillator}
 \subsection*{(a)}
+The Liouville Operator $L_{nm}$ is defined via
+\[
+\frac{d}{dt} P_n(t) = \sum_m L_{nm} P_m(t),
+\]
+where we can insert the rates given in the sheet. We obtain for $n > 0$
+\[
+    \frac{d}{dt} P_n(t) =  w_\uparrow P_{n-1}(t) + w_\downarrow P_{n+1}(t) - (w_\uparrow + w_\downarrow) P_{n}(t) \, ,
+\]
+because the diagonal elements have to be the negative sum of each column. The first energy level $n = 0$ is a special case:
+\[
+     \frac{d}{dt} P_0(t) = w_\downarrow P_{1}(t) - w_\uparrow P_{0}(t)
+\]
+The entire matrix reads the following:
+\[
+\begin{pmatrix}
+- w_\uparrow &       w_\downarrow        &      0       & 0 & ... \\
+  w_\uparrow & w_\uparrow + w_\downarrow & w_\downarrow & 0 & ... \\
+     0       &   w_\uparrow & w_\uparrow + w_\downarrow & w_\downarrow & ... \\
+     0       & 0 & w_\uparrow & w_\uparrow + w_\downarrow  & ... \\
+     0       & 0 & 0 & w_\uparrow & ... \\
+\end{pmatrix}
+\]
 
 \subsection*{(b)}
-
+The left eigenvector ist $
+\mathbf{\sum} = (1, 1, 1, 1, \dots)$ and ensures that every column has a vanishing sum. The right eigenvector is calculated for the equations
+\[
+    \text{n=0 : } 0 &=   w_\downarrow P_{1}(t) - w_\uparrow P_{0}(t) \\
+    \text{n>0 : } 0 &=  w_\uparrow P_{n-1}(t) + w_\downarrow P_{n+1}(t) - (w_\uparrow + w_\downarrow) P_{n}(t) \text{ .}
+\]
+We start with an Ansatz $P_n = C r^n$ and get for $n>0$
+\[
+    0 = C r^{n-1} \cdot \left(w_\uparrow + w_\downarrow r^2 - (w_\uparrow + w_\downarrow) r \right),
+\]
+which is a quadratic equation and is solved to
+\[
+    r_{+/-} = \frac{w_\uparrow + w_\downarrow \pm \sqrt{(w_\uparrow + w_\downarrow)^2 - 4 w_\uparrow w_\downarrow}}{2 w_\downarrow} = \frac{(w_\uparrow + w_\downarrow) \pm (w_\uparrow - w_\downarrow)}{2 w_\downarrow} = 1 \text{ or } \frac{w_\uparrow}{w_\downarrow}
+\]
+It is not possible to normalize $r = 1$, so $ r = \frac{w_\uparrow}{w_\downarrow}$ is the solution. We obtain for the coefficients of the eigenvector:
+\[
+    P_n = C r^n = C \left(  \frac{w_\uparrow}{w_\downarrow} \right)^n
+\]
 \subsection*{(c)}
+The normalization condition yields to the following constant factor C:
+\[
+    1 &= \mathbf{\sum} \cdot \vec{P_n} = \sum_{n=0}^{\infty}  P_n = C \sum_{n=0}^{\infty} \frac{w_\uparrow}{w_\downarrow} = C  \frac{1}{1-\frac{w_\uparrow}{w_\downarrow}} \\
+    C &= 1-\frac{w_\uparrow}{w_\downarrow}
+\]
+The calculation contains a geometric series, leading to the extra condition $w_\uparrow < w_\downarrow$.
 
 \subsection*{(d)}
-
+We can now compare the result wiht the probability distribution in a canonical ensemble, meaning
+\[
+    p_n \propto e^{\frac{E_n}{k_b T}} = A \exp^{\frac{\hbar \omega n}{k_b T}},
+\]
+where the additional terms of $E_n$ are in the constant A. The term with exponent $n$ can be identified with the result of task (c), leading to
+\[
+    \frac{w_\uparrow}{w_\downarrow} = e^{\frac{\hbar \omega}{k_b T}}
+\]
+From this, we can express the temperature $T$ with the rates and obtain
+\[
+    T = \frac{\hbar \omega}{k_b \ln{\frac{w_\uparrow}{w_\downarrow}}}
+\]
 \end{document}
 
 
