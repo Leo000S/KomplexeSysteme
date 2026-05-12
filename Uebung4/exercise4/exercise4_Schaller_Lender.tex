@@ -9,6 +9,7 @@
 \usepackage{listings}
 \usepackage{minted}
 \usepackage{booktabs}
+\usepackage{physics}        %braket schreibweise
 \setlength{\parindent}{0pt}
 
 \title{Physics of Complex Systems: Exercise }
@@ -156,11 +157,12 @@ The Liouville Operator $L_{nm}$ is defined via
 \[
 \frac{d}{dt} P_n(t) = \sum_m L_{nm} P_m(t),
 \]
-where we can insert the rates given in the sheet. We obtain for $n > 0$
+where we can insert the rates given in the sheet. We assume only transitions from n to $n\pm 1$ are possible and obtain for $n > 0$:
 \[
     \frac{d}{dt} P_n(t) =  w_\uparrow P_{n-1}(t) + w_\downarrow P_{n+1}(t) - (w_\uparrow + w_\downarrow) P_{n}(t) \, ,
 \]
-because the diagonal elements have to be the negative sum of each column. The first energy level $n = 0$ is a special case:
+%because the diagonal elements have to be the negative sum of each column.
+As no eigenstate $\ket{-1}$ exists, the first energy level $n = 0$ is a special case:
 \[
      \frac{d}{dt} P_0(t) = w_\downarrow P_{1}(t) - w_\uparrow P_{0}(t)
 \]
@@ -168,53 +170,68 @@ The entire matrix reads the following:
 \[
 \begin{pmatrix}
 - w_\uparrow &       w_\downarrow        &      0       & 0 & ... \\
-  w_\uparrow & w_\uparrow + w_\downarrow & w_\downarrow & 0 & ... \\
-     0       &   w_\uparrow & w_\uparrow + w_\downarrow & w_\downarrow & ... \\
-     0       & 0 & w_\uparrow & w_\uparrow + w_\downarrow  & ... \\
+  w_\uparrow & -(w_\uparrow + w_\downarrow) & w_\downarrow & 0 & ... \\
+     0       &   w_\uparrow & -(w_\uparrow + w_\downarrow) & w_\downarrow & ... \\
+     0       & 0 & w_\uparrow & -(w_\uparrow + w_\downarrow)  & ... \\
      0       & 0 & 0 & w_\uparrow & ... \\
+     ...&...&...&...&...
 \end{pmatrix}
 \]
 
 \subsection*{(b)}
 The left eigenvector ist $
 \mathbf{\sum} = (1, 1, 1, 1, \dots)$ and ensures that every column has a vanishing sum. The right eigenvector is calculated for the equations
+\begin{align*}
+    \text{n=0 : } 0 &=   w_\downarrow P_{1}(t) - w_\uparrow P_{0}(t) \Rightarrow P_1(t)=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)P_0(t) \\
+    \text{n=1 : } 0 &=  w_\uparrow P_{0}(t) + w_\downarrow P_{2}(t) - (w_\uparrow + w_\downarrow) P_{1}(t)=w_\downarrow P_{1}(t) + w_\downarrow P_{2}(t) - (w_\uparrow + w_\downarrow) P_{1}(t)\\&= w_\downarrow P_{2}(t) - w_\uparrow P_{1}(t)
+    \Rightarrow P_2(t)=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)P_1(t)=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)^2P_0(t)
+\end{align*}
+now assume for some n$>1$:
+\begin{align*}
+     P_n(t)&=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right) P_{n-1}(t) \Rightarrow P_n(t)=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)^n P_{0}(t)\\
+     \text{for n+1:}\ 0 &=  w_\uparrow P_{n}(t) + w_\downarrow P_{n+2}(t) - (w_\uparrow + w_\downarrow) P_{n+1}(t)= w_\downarrow P_{n+1}(t) + w_\downarrow P_{n+2}(t) - (w_\uparrow + w_\downarrow) P_{n+1}(t)\\
+     &=w_\downarrow P_{n+2}(t) - w_\uparrow P_{n+1}(t)
+    \Rightarrow P_{n+2}(t)=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)P_{n+1}(t)=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)^2P_n(t)\\
+    \Rightarrow P_{n+2}&=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)^{n+2} P_0(t)
+\end{align*}
+Now we proved 
 \[
-    \text{n=0 : } 0 &=   w_\downarrow P_{1}(t) - w_\uparrow P_{0}(t) \\
-    \text{n>0 : } 0 &=  w_\uparrow P_{n-1}(t) + w_\downarrow P_{n+1}(t) - (w_\uparrow + w_\downarrow) P_{n}(t) \text{ .}
+    P_n = \left(  \frac{w_\uparrow}{w_\downarrow} \right)^n P_0
 \]
-We start with an Ansatz $P_n = C r^n$ and get for $n>0$
-\[
-    0 = C r^{n-1} \cdot \left(w_\uparrow + w_\downarrow r^2 - (w_\uparrow + w_\downarrow) r \right),
-\]
-which is a quadratic equation and is solved to
-\[
-    r_{+/-} = \frac{w_\uparrow + w_\downarrow \pm \sqrt{(w_\uparrow + w_\downarrow)^2 - 4 w_\uparrow w_\downarrow}}{2 w_\downarrow} = \frac{(w_\uparrow + w_\downarrow) \pm (w_\uparrow - w_\downarrow)}{2 w_\downarrow} = 1 \text{ or } \frac{w_\uparrow}{w_\downarrow}
-\]
-It is not possible to normalize $r = 1$, so $ r = \frac{w_\uparrow}{w_\downarrow}$ is the solution. We obtain for the coefficients of the eigenvector:
-\[
-    P_n = C r^n = C \left(  \frac{w_\uparrow}{w_\downarrow} \right)^n
-\]
+by recursion. Where $P_n$ is the n-th component of the right eigenvector to the eigenvalue zero.
 \subsection*{(c)}
-The normalization condition yields to the following constant factor C:
-\[
-    1 &= \mathbf{\sum} \cdot \vec{P_n} = \sum_{n=0}^{\infty}  P_n = C \sum_{n=0}^{\infty} \frac{w_\uparrow}{w_\downarrow} = C  \frac{1}{1-\frac{w_\uparrow}{w_\downarrow}} \\
-    C &= 1-\frac{w_\uparrow}{w_\downarrow}
-\]
-The calculation contains a geometric series, leading to the extra condition $w_\uparrow < w_\downarrow$.
+The normalization condition yields :
+\begin{align*}
+    1 &= \mathbf{\sum} \cdot \vec{P_n} = \sum_{n=0}^{\infty}  P_n = P_0 \sum_{n=0}^{\infty} \left(\frac{w_\uparrow}{w_\downarrow}\right)^n = P_0  \left(\frac{1}{1-\frac{w_\uparrow}{w_\downarrow}}\right) \\
+    P_0 &= 1-\frac{w_\uparrow}{w_\downarrow}\\
+    \Rightarrow
+\end{align*}
+The calculation contains a geometric series, it only converges, if the condition $w_\uparrow < w_\downarrow$ is fulfilled.
+
+Now we can express the components of the right eigenvector to the eigenvalue zero only dependent from $\omega_\uparrow$ and $\omega_\downarrow$:
+\begin{align*}
+    P_n= \left(1-\frac{\omega_\uparrow}{\omega_\downarrow}\right)\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)^n= \left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)^n-\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)^{n+1}
+\end{align*}
 
 \subsection*{(d)}
-We can now compare the result wiht the probability distribution in a canonical ensemble, meaning
-\[
-    p_n \propto e^{\frac{E_n}{k_b T}} = A \exp^{\frac{\hbar \omega n}{k_b T}},
-\]
-where the additional terms of $E_n$ are in the constant A. The term with exponent $n$ can be identified with the result of task (c), leading to
-\[
-    \frac{w_\uparrow}{w_\downarrow} = e^{\frac{\hbar \omega}{k_b T}}
-\]
-From this, we can express the temperature $T$ with the rates and obtain
-\[
-    T = \frac{\hbar \omega}{k_b \ln{\frac{w_\uparrow}{w_\downarrow}}}
-\]
+The probability distribution in a canonical ensemble is 
+\begin{align*}
+    p_n \propto e^{\frac{E_n}{k_B T}} &= \text{exp}\left(\frac{\hbar \omega }{2k_B T}\right)\cdot \text{exp}\left(\frac{\hbar \omega n}{k_B T}\right)\\
+    &=A\cdot \left[\text{exp}\left(\frac{\hbar \omega}{k_B T}\right)\right]^n
+\end{align*}
+Furthermore we know
+\begin{align*}
+    p_n\propto\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)^n
+\end{align*}
+Comparing the base of the exponent for both terms leads to this expression: 
+\begin{align}
+        \frac{w_\uparrow}{w_\downarrow} &= e^{\frac{\hbar \omega}{k_B T}}\\
+        \Rightarrow \text{ln}\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)&=-\frac{\hbar\omega}{k_BT}
+\end{align}
+solving for T yields
+\begin{align}
+    T = -\frac{\hbar \omega}{k_B \text{ln}\left({\frac{w_\uparrow}{w_\downarrow}}\right)}=\frac{\hbar \omega}{k_B \text{ln}\left({\frac{w_\downarrow}{w_\uparrow}}\right)}
+\end{align}
 \end{document}
 
 
