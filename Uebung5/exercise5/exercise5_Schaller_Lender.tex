@@ -22,16 +22,45 @@
 \subsection*{(a)}
 to prove:
 \begin{align}
-    e^{(A\otimes \mathbb{1}+\mathbb{1}\otimes B)}=e^A\otimes e^B
+    e^{A\otimes \mathbb{1}+\mathbb{1}\otimes B}=e^A\otimes e^B
 \end{align}
-first we show that $X=A\otimes \mathbb{1}$ and $Y=\mathbb{1}\otimes B$ commutate via the relation $(A\otimes B)(C\otimes D)=(AC)\otimes (BD)$, which emerges directly from the definition of the Kronecker product:
+first we show that $X=A\otimes \mathbb{1}$ and $Y=\mathbb{1}\otimes B$ commutate via the relation
+\begin{align}
+(A\otimes B)(C\otimes D)=(AC)\otimes (BD)
+\label{relation}
+\end{align}
+which emerges directly from the definition of the Kronecker product:
 \begin{align}
    [X,Y]&=(A\otimes \mathbb{1})(\mathbb{1}\otimes B)-(\mathbb{1}\otimes B)(A\otimes \mathbb{1})\\
    &=A\mathbb{1}\otimes\mathbb{1}B-\mathbb{1}A\otimes B\mathbb{1}= A\otimes B -A\otimes B=0
 \end{align}
 now we can use:
 \begin{align}
-    e^{(A\otimes \mathbb{1}+\mathbb{1}\otimes B)}=e^{X+Y}=e^Xe^Y
+    e^{A\otimes \mathbb{1}+\mathbb{1}\otimes B}=e^{X+Y}=e^Xe^Y= e^{A\otimes \mathbb{1}}e^{\mathbb{1}\otimes B}
+\end{align}
+the general matrix exponential is
+\begin{align}
+    e^X&=\sum^\infty_{k=0}\frac{X^k}{k!}\\
+    \Rightarrow     e^{A\otimes \mathbb{1}}&=\sum^\infty_{k=0}\frac{(A\otimes\mathbb{1})^k}{k!}
+\end{align}
+applying Eq.\ref{relation} repeatedly on $(A\otimes\mathbb{1})^k$:
+\begin{align}
+    (A\otimes\mathbb{1})^k&=(A\otimes\mathbb{1})(A\otimes\mathbb{1})(A\otimes\mathbb{1})^{k-2}=\\
+    &=(A^2\otimes\mathbb{1}^2)(A\otimes\mathbb{1})(A\otimes\mathbb{1})(A\otimes\mathbb{1})^{k-4}\\
+    &=(A^2\otimes\mathbb{1}^2)(A^2\otimes\mathbb{1^2})(A\otimes\mathbb{1})^{k-4}\\
+    &=(A^4\otimes\mathbb{1}^4)(A\otimes\mathbb{1})^{k-4}= ...\\
+    &=A^k\otimes\mathbb{1}^k
+\end{align}
+now we can write the exponential as:
+\begin{align}
+    e^{A\otimes \mathbb{1}}&= \sum^\infty_{k=0}\frac{(A\otimes\mathbb{1})^k}{k!}=\sum^\infty_{k=0}\frac{A^k\otimes\mathbb{1}^k}{k!}\\
+    \text{since $\mathbb{1}^k=\mathbb{1}$:}\hspace{0.3cm}&=\sum^\infty_{k=0}\frac{A^k}{k!}\otimes\mathbb{1}\\
+    &=e^A\otimes\mathbb{1}
+\end{align}
+following the same arguments we get $e^{\mathbb{1}\otimes B}=\mathbb{1}\otimes e^B$ and thus we showed
+\begin{align}
+    e^{A\otimes \mathbb{1}+\mathbb{1}\otimes B}&=e^{A\otimes \mathbb{1}}e^{\mathbb{1}\otimes B}= (e^A\otimes\mathbb{1})(\mathbb{1}\otimes e^B)\\
+    &=(e^A\mathbb{1})\otimes(\mathbb{1}e^B)=e^A\otimes e^B
 \end{align}
 
 \end{document}
