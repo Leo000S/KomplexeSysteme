@@ -134,7 +134,7 @@ This proves the formula by induction.
 
 \subsection*{(d)}
 
-For a one fold probability distribution $p(x) = w \, e-{-wx}$ we can calculate the expectation value and the variance to
+For a one fold probability distribution $p(x) = w \, e^{-wx}$ we can calculate the expectation value and the variance to
 \[
     \mu_1 = \frac{1}{w} \text{ and } \sigma_1^2 = \frac{1}{w^2}
 \]
@@ -146,7 +146,7 @@ With $\sigma_N$ and $\mu_N$, we can built a normal distribution and compare it t
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\linewidth]{Prob_distribution.png}
-    \caption{Histogram for K=20 and one million generated random numbers}
+    \caption{Calculated probability distribution and corresponding gaussian distribution}
     \label{FigProbdis}
 \end{figure}
 Both curves match very good to each other, showing the Central Limit Theorem works.
