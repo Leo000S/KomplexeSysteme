@@ -57,7 +57,7 @@ now we can write the exponential as:
     e^{\mathbf{A}\otimes \mathbb{1}}&= \sum^\infty_{k=0}\frac{(\mathbf{A}\otimes\mathbb{1})^k}{k!}=\sum^\infty_{k=0}\frac{\mathbf{A}^k\otimes\mathbb{1}^k}{k!}\\
     \intertext{since $\mathbb{1}^k=\mathbb{1}$:}e^{\mathbf{A}\otimes \mathbb{1}}&=\sum^\infty_{k=0}\frac{\mathbf{A}^k}{k!}\otimes\mathbb{1}=e^\mathbf{A}\otimes\mathbb{1}
 \end{align}
-following the same arguments we get $e^{\mathbb{1}\otimes \mathbf{B}}=\mathbb{1}\otimes e^\mathbf{B}$ and thus we showed
+following the same arguments we see $e^{\mathbb{1}\otimes \mathbf{B}}=\mathbb{1}\otimes e^\mathbf{B}$ and thus we showed
 \begin{align}
     e^{A\otimes \mathbb{1}+\mathbb{1}\otimes \mathbf{B}}&=e^{A\otimes \mathbb{1}}e^{\mathbb{1}\otimes \mathbf{B}}= (e^\mathbf{A}\otimes\mathbb{1})(\mathbb{1}\otimes e^\mathbf{B})\\
     &=(e^\mathbf{A}\mathbb{1})\otimes(\mathbb{1}e^\mathbf{B})=e^\mathbf{A}\otimes e^\mathbf{B}
@@ -103,9 +103,9 @@ we then know:
      e^{\phi \sigma_i \otimes \sigma_j}&= \sum_{n=0}^{\infty} \frac{(\phi \sigma_i \otimes \sigma_j)^n}{n!}\\
      \intertext{with}
      (\sigma_i \otimes \sigma_j)^2&=(\sigma_i \otimes \sigma_j)(\sigma_i \otimes \sigma_j)= (\sigma_i^2 \otimes \sigma_j^2)= \mathbb{1}\otimes\mathbb{1}=\mathbb{I}\\
-     \intertext{we can rewrite}
-     e^{\phi \sigma_i \otimes \sigma_j} &= \mathbb{I}\sum_{k=0}^{\infty} \frac{\phi^{2k}}{(2k)!}+ \sigma_i \otimes \sigma_j\sum_{k=0}^{\infty} \frac{\phi^{2k+1}}{(2k+1)!}\\
-     \intertext{the two series correspond to the hyperbolic functions:}
+     \intertext{we can write}
+     \sum_{n=0}^{\infty} \frac{(\phi \sigma_i \otimes \sigma_j)^n}{n!} &= \mathbb{I}\sum_{k=0}^{\infty} \frac{\phi^{2k}}{(2k)!}+ \sigma_i \otimes \sigma_j\sum_{k=0}^{\infty} \frac{\phi^{2k+1}}{(2k+1)!}\\
+     \intertext{the series on the right side correspond to the hyperbolic functions.}
      \Rightarrow  e^{\phi \sigma_i \otimes \sigma_j}&= \mathbb{I} \cosh(\phi) + (\sigma_i \otimes \sigma_j) \sinh(\phi)
 \end{align}
 
