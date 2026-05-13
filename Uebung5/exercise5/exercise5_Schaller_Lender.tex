@@ -20,51 +20,54 @@
 
 \section*{Task 5.1: Tensor product}
 \subsection*{(a)}
+
 to prove:
 \begin{align}
-    e^{A\otimes \mathbb{1}+\mathbb{1}\otimes B}=e^A\otimes e^B
+    e^{\mathbf{A}\otimes \mathbb{1}+\mathbb{1}\otimes \mathbf{B}}=e^\mathbf{A}\otimes e^\mathbf{B}
 \end{align}
-first we show that $X=A\otimes \mathbb{1}$ and $Y=\mathbb{1}\otimes B$ commutate via the relation
+first we show that $\mathbf{X}=\mathbf{A}\otimes \mathbb{1}$ and $\mathbf{Y}=\mathbb{1}\otimes \mathbf{B}$ commute via the relation
 \begin{align}
-(A\otimes B)(C\otimes D)=(AC)\otimes (BD)
+(\mathbf{A}\otimes \mathbf{B})(\mathbf{C}\otimes \mathbf{D})=(\mathbf{AC})\otimes (\mathbf{BD})
 \label{relation}
 \end{align}
 which emerges directly from the definition of the Kronecker product:
 \begin{align}
-   [X,Y]&=(A\otimes \mathbb{1})(\mathbb{1}\otimes B)-(\mathbb{1}\otimes B)(A\otimes \mathbb{1})\\
-   &=A\mathbb{1}\otimes\mathbb{1}B-\mathbb{1}A\otimes B\mathbb{1}= A\otimes B -A\otimes B=0
+   [\mathbf{X},\mathbf{Y}]&=(\mathbf{A}\otimes \mathbb{1})(\mathbb{1}\otimes \mathbf{B})-(\mathbb{1}\otimes \mathbf{B})(\mathbf{A}\otimes \mathbb{1})\\
+   &=\mathbf{A}\mathbb{1}\otimes\mathbb{1}B-\mathbb{1}\mathbf{A}\otimes \mathbf{B}\mathbb{1}= \mathbf{A}\otimes \mathbf{B} -\mathbf{A}\otimes \mathbf{B}=0
 \end{align}
 now we can use:
 \begin{align}
-    e^{A\otimes \mathbb{1}+\mathbb{1}\otimes B}=e^{X+Y}=e^Xe^Y= e^{A\otimes \mathbb{1}}e^{\mathbb{1}\otimes B}
+    e^{\mathbf{A}\otimes \mathbb{1}+\mathbb{1}\otimes \mathbf{B}}=e^{\mathbf{X}+\mathbf{Y}}=e^\mathbf{X}e^\mathbf{Y}= e^{\mathbf{A}\otimes \mathbb{1}}e^{\mathbb{1}\otimes \mathbf{B}}
 \end{align}
 the general matrix exponential is
 \begin{align}
-    e^X&=\sum^\infty_{k=0}\frac{X^k}{k!}\\
-    \Rightarrow     e^{A\otimes \mathbb{1}}&=\sum^\infty_{k=0}\frac{(A\otimes\mathbb{1})^k}{k!}
+    e^\mathbf{X}&=\sum^\infty_{k=0}\frac{\mathbf{\mathbf{X}}^k}{k!}\\
+    \Rightarrow     e^{\mathbf{A}\otimes \mathbb{1}}&=\sum^\infty_{k=0}\frac{(\mathbf{A}\otimes\mathbb{1})^k}{k!}
 \end{align}
-applying Eq.\ref{relation} repeatedly on $(A\otimes\mathbb{1})^k$:
+applying Eq.\ref{relation} repeatedly on $(\mathbf{A}\otimes\mathbb{1})^k$:
 \begin{align}
-    (A\otimes\mathbb{1})^k&=(A\otimes\mathbb{1})(A\otimes\mathbb{1})(A\otimes\mathbb{1})^{k-2}=\\
-    &=(A^2\otimes\mathbb{1}^2)(A\otimes\mathbb{1})(A\otimes\mathbb{1})(A\otimes\mathbb{1})^{k-4}\\
-    &=(A^2\otimes\mathbb{1}^2)(A^2\otimes\mathbb{1^2})(A\otimes\mathbb{1})^{k-4}\\
-    &=(A^4\otimes\mathbb{1}^4)(A\otimes\mathbb{1})^{k-4}= ...\\
-    &=A^k\otimes\mathbb{1}^k
+(\mathbf{A}\otimes\mathbb{1})^k&=(\mathbf{A}\otimes\mathbb{1})(\mathbf{A}\otimes\mathbb{1})(\mathbf{A}\otimes\mathbb{1})^{k-2}=\\
+    &=(\mathbf{A}^2\otimes\mathbb{1}^2)(\mathbf{A}\otimes\mathbb{1})(\mathbf{A}\otimes\mathbb{1})(\mathbf{A}\otimes\mathbb{1})^{k-4}\\
+    &=(\mathbf{A}^2\otimes\mathbb{1}^2)(\mathbf{A}^2\otimes\mathbb{1^2})(\mathbf{A}\otimes\mathbb{1})^{k-4}\\
+    &=(\mathbf{A}^4\otimes\mathbb{1}^4)(\mathbf{A}\otimes\mathbb{1})^{k-4}= ...\\
+    &=\mathbf{A}^k\otimes\mathbb{1}^k
 \end{align}
 now we can write the exponential as:
 \begin{align}
-    e^{A\otimes \mathbb{1}}&= \sum^\infty_{k=0}\frac{(A\otimes\mathbb{1})^k}{k!}=\sum^\infty_{k=0}\frac{A^k\otimes\mathbb{1}^k}{k!}\\
-    \text{since $\mathbb{1}^k=\mathbb{1}$:}\hspace{0.3cm}&=\sum^\infty_{k=0}\frac{A^k}{k!}\otimes\mathbb{1}\\
-    &=e^A\otimes\mathbb{1}
+    e^{\mathbf{A}\otimes \mathbb{1}}&= \sum^\infty_{k=0}\frac{(\mathbf{A}\otimes\mathbb{1})^k}{k!}=\sum^\infty_{k=0}\frac{\mathbf{A}^k\otimes\mathbb{1}^k}{k!}\\
+    \intertext{since $\mathbb{1}^k=\mathbb{1}$:}e^{\mathbf{A}\otimes \mathbb{1}}&=\sum^\infty_{k=0}\frac{\mathbf{A}^k}{k!}\otimes\mathbb{1}=e^\mathbf{A}\otimes\mathbb{1}
 \end{align}
-following the same arguments we get $e^{\mathbb{1}\otimes B}=\mathbb{1}\otimes e^B$ and thus we showed
+following the same arguments we get $e^{\mathbb{1}\otimes \mathbf{B}}=\mathbb{1}\otimes e^\mathbf{B}$ and thus we showed
 \begin{align}
-    e^{A\otimes \mathbb{1}+\mathbb{1}\otimes B}&=e^{A\otimes \mathbb{1}}e^{\mathbb{1}\otimes B}= (e^A\otimes\mathbb{1})(\mathbb{1}\otimes e^B)\\
-    &=(e^A\mathbb{1})\otimes(\mathbb{1}e^B)=e^A\otimes e^B
+    e^{A\otimes \mathbb{1}+\mathbb{1}\otimes \mathbf{B}}&=e^{A\otimes \mathbb{1}}e^{\mathbb{1}\otimes \mathbf{B}}= (e^\mathbf{A}\otimes\mathbb{1})(\mathbb{1}\otimes e^\mathbf{B})\\
+    &=(e^\mathbf{A}\mathbb{1})\otimes(\mathbb{1}e^\mathbf{B})=e^\mathbf{A}\otimes e^\mathbf{B}
+\end{align}
+
+\subsection*{(b)}
+consider the state $\ket{a}\otimes\ket{b}$:
+\begin{align}
+    (\mathbf{A} \otimes \mathbf{B})(|a\rangle \otimes |b\rangle) = (\mathbf{A}|a\rangle) \otimes (\mathbf{B}|b\rangle)
 \end{align}
 
 \end{document}
-
-
-# latexmk -pdf -shell-escape -output-directory=out Uebung4/exercise4/exercise4_Schaller_Lender.tex
 
