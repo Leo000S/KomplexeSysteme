@@ -186,10 +186,13 @@ The left eigenvector ist $
     \text{n=1 : } 0 &=  w_\uparrow P_{0}(t) + w_\downarrow P_{2}(t) - (w_\uparrow + w_\downarrow) P_{1}(t)=w_\downarrow P_{1}(t) + w_\downarrow P_{2}(t) - (w_\uparrow + w_\downarrow) P_{1}(t)\\&= w_\downarrow P_{2}(t) - w_\uparrow P_{1}(t)
     \Rightarrow P_2(t)=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)P_1(t)=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)^2P_0(t)
 \end{align*}
-now assume for some n$>1$:
+now we assume for a state $n>1$:
+\[
+     P_{n+1}(t)=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right) P_{n}(t) \Rightarrow P_{n+1}(t)=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)^{n+1} P_{0}(t)
+\]
+insert the induction hypothesis into the equation for the state $n+1$:
 \begin{align*}
-     P_n(t)&=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right) P_{n-1}(t) \Rightarrow P_n(t)=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)^n P_{0}(t)\\
-     \text{for n+1:}\ 0 &=  w_\uparrow P_{n}(t) + w_\downarrow P_{n+2}(t) - (w_\uparrow + w_\downarrow) P_{n+1}(t)= w_\downarrow P_{n+1}(t) + w_\downarrow P_{n+2}(t) - (w_\uparrow + w_\downarrow) P_{n+1}(t)\\
+     0 &=  w_\uparrow P_{n}(t) + w_\downarrow P_{n+2}(t) - (w_\uparrow + w_\downarrow) P_{n+1}(t)= w_\downarrow P_{n+1}(t) + w_\downarrow P_{n+2}(t) - (w_\uparrow + w_\downarrow) P_{n+1}(t)\\
      &=w_\downarrow P_{n+2}(t) - w_\uparrow P_{n+1}(t)
     \Rightarrow P_{n+2}(t)=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)P_{n+1}(t)=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)^2P_n(t)\\
     \Rightarrow P_{n+2}&=\left(\frac{\omega_\uparrow}{\omega_\downarrow}\right)^{n+2} P_0(t)
@@ -198,13 +201,12 @@ Now we proved
 \[
     P_n = \left(  \frac{w_\uparrow}{w_\downarrow} \right)^n P_0
 \]
-by recursion. Where $P_n$ is the n-th component of the right eigenvector to the eigenvalue zero.
+by induction. Where $P_n$ is the n-th component of the right eigenvector to the eigenvalue zero.
 \subsection*{(c)}
 The normalization condition yields :
 \begin{align*}
     1 &= \mathbf{\sum} \cdot \vec{P_n} = \sum_{n=0}^{\infty}  P_n = P_0 \sum_{n=0}^{\infty} \left(\frac{w_\uparrow}{w_\downarrow}\right)^n = P_0  \left(\frac{1}{1-\frac{w_\uparrow}{w_\downarrow}}\right) \\
-    P_0 &= 1-\frac{w_\uparrow}{w_\downarrow}\\
-    \Rightarrow
+       \Rightarrow P_0 &= 1-\frac{w_\uparrow}{w_\downarrow}\\
 \end{align*}
 The calculation contains a geometric series, it only converges, if the condition $w_\uparrow < w_\downarrow$ is fulfilled.
 
@@ -216,7 +218,7 @@ Now we can express the components of the right eigenvector to the eigenvalue zer
 \subsection*{(d)}
 The probability distribution in a canonical ensemble is 
 \begin{align*}
-    p_n \propto e^{\frac{E_n}{k_B T}} &= \text{exp}\left(\frac{\hbar \omega }{2k_B T}\right)\cdot \text{exp}\left(\frac{\hbar \omega n}{k_B T}\right)\\
+    p_n \propto \text{exp}\left(\frac{E_n}{k_B T}\right) &= \text{exp}\left(\frac{\hbar \omega }{2k_B T}\right)\cdot \text{exp}\left(\frac{\hbar \omega n}{k_B T}\right)\\
     &=A\cdot \left[\text{exp}\left(\frac{\hbar \omega}{k_B T}\right)\right]^n
 \end{align*}
 Furthermore we know
@@ -236,3 +238,5 @@ solving for T yields
 
 
 # latexmk -pdf -shell-escape -output-directory=out Uebung4/exercise4/exercise4_Schaller_Lender.tex
+
+
