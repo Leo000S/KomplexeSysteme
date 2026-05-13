@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage[english]{babel}
+
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage{booktabs}
+\usepackage{physics}        %braket schreibweise
+\setlength{\parindent}{0pt}
+
+\title{Physics of Complex Systems: Exercise }
+\author{Leopold Schaller and Daniel Lender}
+
+\begin{document}
+\maketitle
+
+\section*{Task 5.1: Tensor product}
+\subsection*{(a)}
+to prove:
+\begin{align}
+    e^{(A\otimes \mathbb{1}+\mathbb{1}\otimes B)}=e^A\otimes e^B
+\end{align}
+first we show that $X=A\otimes \mathbb{1}$ and $Y=\mathbb{1}\otimes B$ commutate via the relation $(A\otimes B)(C\otimes D)=(AC)\otimes (BD)$, which emerges directly from the definition of the Kronecker product:
+\begin{align}
+   [X,Y]&=(A\otimes \mathbb{1})(\mathbb{1}\otimes B)-(\mathbb{1}\otimes B)(A\otimes \mathbb{1})\\
+   &=A\mathbb{1}\otimes\mathbb{1}B-\mathbb{1}A\otimes B\mathbb{1}= A\otimes B -A\otimes B=0
+\end{align}
+now we can use:
+\begin{align}
+    e^{(A\otimes \mathbb{1}+\mathbb{1}\otimes B)}=e^{X+Y}=e^Xe^Y
+\end{align}
+
+\end{document}
+
+
+# latexmk -pdf -shell-escape -output-directory=out Uebung4/exercise4/exercise4_Schaller_Lender.tex
+
