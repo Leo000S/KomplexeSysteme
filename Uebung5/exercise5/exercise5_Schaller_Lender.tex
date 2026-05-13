@@ -81,21 +81,16 @@ for the Tensor Product:
     [\sigma_i \otimes \sigma_i, \sigma_j \otimes \sigma_j] &= (\sigma_i \otimes \sigma_i)(\sigma_j \otimes \sigma_j) - (\sigma_j \otimes \sigma_j)(\sigma_i \otimes \sigma_i)\\
     &=(\sigma_i \sigma_j \otimes \sigma_i \sigma_j) - (\sigma_j \sigma_i \otimes \sigma_j \sigma_i)
 \end{align}
-with $\sigma_i \sigma_j=\delta_{i,j}\mathbb{1}+i \epsilon_{ijk} \sigma_k$ we have to distinguish two cases:
+with $\sigma_i \sigma_j=\delta_{i,j}\mathbb{1}+i \epsilon_{ijk} \sigma_k$ we have to look at two cases.
 
 case 1: $i=j \Rightarrow \sigma_i \sigma_j=\mathbb{1}$. The Tensor Product Commutator is then:
 \begin{align}
-    (\sigma_i \sigma_j \otimes \sigma_i \sigma_j) - (\sigma_j \sigma_i \otimes \sigma_j \sigma_i)= (\mathbb{1}\otimes\mathbb{1})-(\mathbb{1}\otimes\mathbb{1})=0
-\end{align}
-
-case 2: $i\neq j \Rightarrow \sigma_i \sigma_j=i \epsilon_{ijk} \sigma_k$. The Tensor Product Commutator is then:
-\begin{align}
+    (\sigma_i \sigma_j \otimes \sigma_i \sigma_j) - (\sigma_j \sigma_i \otimes \sigma_j \sigma_i)&= (\mathbb{1}\otimes\mathbb{1})-(\mathbb{1}\otimes\mathbb{1})=0
+\intertext{case 2: $i\neq j \Rightarrow \sigma_i \sigma_j=i \epsilon_{ijk} \sigma_k$. The Tensor Product Commutator is then:}
     (\sigma_i \sigma_j \otimes \sigma_i \sigma_j) - (\sigma_j \sigma_i \otimes \sigma_j \sigma_i)&= (i \sigma_k\otimes i\sigma_k)-(-i \sigma_k\otimes-i\sigma_k)\\
     &=-(\sigma_k\otimes\sigma_k)+(\sigma_k\otimes\sigma_k)= 0
-\end{align}
-we then know:
-\begin{align}
-    [\sigma_i \otimes \sigma_i, \sigma_j \otimes \sigma_j]=0
+\intertext{so for every $i,j$:}
+    [\sigma_i \otimes \sigma_i, \sigma_j \otimes \sigma_j]&=0
 \end{align}
 
 \subsection*{(d)}
