@@ -107,6 +107,30 @@ case 1: $i=j \Rightarrow \sigma_i \sigma_j=\mathbb{1}$. The Tensor Product Commu
 
 \section*{Task 5.2: Creation-Annihilation Model}
 \subsection*{(a)}
+First column:
+there are no transition from state $\emptyset\emptyset$ into another state $\rightarrow$ entire column is zero.
+
+Second and third column:
+$\mathcal{L}_{12,13}$ No transitions into state $\emptyset\emptyset$ 
+$\mathcal{L}_{23,32}$: Transition  $\emptyset A\leftrightarrow A\emptyset$ at rate D.
+$\mathcal{L}_{24,34}$ Transition $\emptyset A/ A\emptyset\rightarrow AA$ at rate $\lambda$
+$\mathcal{L}_{22,33}$ has to be chosen such, that the column sum is zero.
+
+fourth column:
+$\mathcal{L}_{14}$ transition into state $\emptyset\emptyset$ at rate $\mu$.
+$\mathcal{L}_{24,34}$ No transitions into states $\emptyset A/ A\emptyset$.
+$\mathcal{L}_{44}$ has to be chosen such, that the column sum is zero.
+\begin{align}
+\mathcal{L}^{(2)}=
+    \begin{pmatrix}
+        0&0&0&\mu\\
+        0&-(D+\lambda)&D&0\\
+        0&D&-(D+\lambda)&0\\
+        0&\lambda&\lambda&-\mu
+    \end{pmatrix}
+\end{align}
+
+\subsection*{(b)}
 
 
 \end{document}
