@@ -123,14 +123,61 @@ $\mathcal{L}_{44}=-\mu$: has to be chosen such, that the column sum is zero, to 
 \begin{align}
 \mathcal{L}^{(2)}=
     \begin{pmatrix}
-        0&0&0&\mu\\
-        0&-(D+\lambda)&D&0\\
-        0&D&-(D+\lambda)&0\\
-        0&\lambda&\lambda&-\mu
+        0&       0&       0& \mu    \\
+        0&  -(D+\lambda)&       D& 0      \\
+        0&       D& -(D+\lambda) & 0      \\
+        0& \lambda& \lambda& -\mu
     \end{pmatrix}
 \end{align}
 
 \subsection*{(b)}
+We now have to perform two Kronecker products $\mathcal{L}^{(2)} \otimes \mathbf{1}$ and $\mathbf{1} \otimes \mathcal{L}^{(2)}$ and add them together. In the end we obtain the following 8x8 matrix, which was calculated using the python package $sympy$.
+\begin{align}
+\mathcal{L}^{(3)} &=
+\underbrace{
+\begin{pmatrix}
+\mathcal{L}^{(2)}  & 0 \\
+0                  & \mathcal{L}^{(2)}
+\end{pmatrix}
+}_{\mathbf{1}\otimes \mathcal{L}^{(2)}}
++
+\underbrace{
+\begin{pmatrix}
+0\mathbf{1} & 0\mathbf{1} & 0\mathbf{1} & \mu \mathbf{1} \\
+0\mathbf{1} & -(D+\lambda)\mathbf{1} & D\mathbf{1} & 0\mathbf{1} \\
+0\mathbf{1} & D\mathbf{1} & -(D+\lambda)\mathbf{1} & 0\mathbf{1} \\
+0\mathbf{1} & \lambda\mathbf{1} & \lambda\mathbf{1} & -\mu\mathbf{1}
+\end{pmatrix}
+}_{\mathcal{L}^{(2)}\otimes \mathbf{1}} \\
+    &=
+\left(\begin{matrix}0 & 0 & 0 & \mu & 0 & 0 & \mu & 0\\0 & - D - \lambda & D & 0 & 0 & 0 & 0 & \mu\\0 & D & - 2 D - 2 \lambda & 0 & D & 0 & 0 & 0\\0 & \lambda & \lambda & - D - \lambda - \mu & 0 & D & 0 & 0\\0 & 0 & D & 0 & - D - \lambda & 0 & 0 & \mu\\0 & 0 & 0 & D & 0 & - 2 D - 2 \lambda & D & 0\\0 & 0 & \lambda & 0 & \lambda & D & - D - \lambda - \mu & 0\\0 & 0 & 0 & \lambda & 0 & 2 \lambda & \lambda & - 2 \mu\end{matrix}\right)
+\end{align}
+
+\subsection*{(c)}
+We obtain the following eigenvalues for the case $\lambda = 0$:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{c c}
+\hline
+
+Eigenvalue & Degeneracy \\
+$0$ & 2 \\
+$- 3 D$ & 1 \\
+$- D$ & 1 \\
+$- 2 \mu$ & 1 \\
+$- D - \mu$ & 1 \\
+$- \frac{3 D}{2} - \frac{\mu}{2} - \frac{\sqrt{9 D^{2} - 2 D \mu + \mu^{2}}}{2}$ & 1 \\
+$- \frac{3 D}{2} - \frac{\mu}{2} + \frac{\sqrt{9 D^{2} - 2 D \mu + \mu^{2}}}{2}$ & 1 \\
+
+\hline
+\hline
+\end{tabular}
+\caption{Eigenvalues and their degeneracies of $\mathcal{L}^{(3)}$}
+\end{table}
+
+We observe a degeneracy of two for the eigenvalue $E = 0$, which corresponds to the case of zero particles. This is reasonable, because we turned off the only process which produces particles by setting $\lambda = 0$. The degeneracy yields from two groups of states. One is the vacuum $(000)$ and the other one are the one particle states $(A00), (0A0) \text{ and } (00A)$. They are only affected by diffusion $D$. If we would choose a specific linear combination of these three states, we would also obtain an eigenvector for eigenvalue zero.
+
 
 
 \end{document}
