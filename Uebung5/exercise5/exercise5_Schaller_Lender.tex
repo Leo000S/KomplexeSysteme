@@ -139,16 +139,16 @@ We now have to perform two Kronecker products $\mathcal{L}^{(2)} \otimes \mathbf
 \mathcal{L}^{(2)}  & 0 \\
 0                  & \mathcal{L}^{(2)}
 \end{pmatrix}
-}_{\mathbf{1}\otimes \mathcal{L}^{(2)}}
+}_{\mathbb{1}\otimes \mathcal{L}^{(2)}}
 +
 \underbrace{
 \begin{pmatrix}
-0\mathbf{1} & 0\mathbf{1} & 0\mathbf{1} & \mu \mathbf{1} \\
-0\mathbf{1} & -(D+\lambda)\mathbf{1} & D\mathbf{1} & 0\mathbf{1} \\
-0\mathbf{1} & D\mathbf{1} & -(D+\lambda)\mathbf{1} & 0\mathbf{1} \\
-0\mathbf{1} & \lambda\mathbf{1} & \lambda\mathbf{1} & -\mu\mathbf{1}
+0\mathbb{1} & 0\mathbb{1} & 0\mathbb{1} & \mu \mathbb{1} \\
+0\mathbb{1} & -(D+\lambda)\mathbb{1} & D\mathbb{1} & 0\mathbb{1} \\
+0\mathbb{1} & D\mathbb{1} & -(D+\lambda)\mathbb{1} & 0\mathbb{1} \\
+0\mathbb{1} & \lambda\mathbb{1} & \lambda\mathbb{1} & -\mu\mathbb{1}
 \end{pmatrix}
-}_{\mathcal{L}^{(2)}\otimes \mathbf{1}} \\
+}_{\mathcal{L}^{(2)}\otimes \mathbb{1}} \\
     &=
 \left(\begin{matrix}0 & 0 & 0 & \mu & 0 & 0 & \mu & 0\\0 & - D - \lambda & D & 0 & 0 & 0 & 0 & \mu\\0 & D & - 2 D - 2 \lambda & 0 & D & 0 & 0 & 0\\0 & \lambda & \lambda & - D - \lambda - \mu & 0 & D & 0 & 0\\0 & 0 & D & 0 & - D - \lambda & 0 & 0 & \mu\\0 & 0 & 0 & D & 0 & - 2 D - 2 \lambda & D & 0\\0 & 0 & \lambda & 0 & \lambda & D & - D - \lambda - \mu & 0\\0 & 0 & 0 & \lambda & 0 & 2 \lambda & \lambda & - 2 \mu\end{matrix}\right)
 \end{align}
@@ -176,7 +176,10 @@ $- \frac{3 D}{2} - \frac{\mu}{2} + \frac{\sqrt{9 D^{2} - 2 D \mu + \mu^{2}}}{2}$
 \caption{Eigenvalues and their degeneracies of $\mathcal{L}^{(3)}$}
 \end{table}
 
-We observe a degeneracy of two for the eigenvalue $E = 0$, which corresponds to the case of zero particles. This is reasonable, because we turned off the only process which produces particles by setting $\lambda = 0$. The degeneracy yields from two groups of states. One is the vacuum $(000)$ and the other one are the one particle states $(A00), (0A0) \text{ and } (00A)$. They are only affected by diffusion $D$. If we would choose a specific linear combination of these three states, we would also obtain an eigenvector for eigenvalue zero.
+At $\lambda=0$ (no particle production), the ground state ($\epsilon=0$) is twofold degenerate. Because even and odd particle sectors cannot mix, they evolve independently into two distinct steady states, an even sector ($N=0, 2$): Particles fully annihilate, leaving the empty state:$$\ket{G_{\text{even}}} = \ket{\emptyset\emptyset\emptyset}$$
+and an odd sector ($N=1, 3$): Particles reduce to a single diffusing particle, yielding a uniform distribution:$$\ket{G_{\text{odd}}} = \frac{1}{3}\big(\ket{\emptyset\emptyset A} + \ket{\emptyset A\emptyset} + \ket{A\emptyset\emptyset}\big)$$This independence prevents relaxation to a unique ground state, preserving the twofold degeneracy.
+
+%We observe a degeneracy of two for the eigenvalue $E = 0$, which corresponds to the case of zero particles. This is reasonable, because we turned off the only process which produces particles by setting $\lambda = 0$. The degeneracy yields from two groups of states. One is the vacuum $(000)$ and the other one are the one particle states $(A00), (0A0) \text{ and } (00A)$. They are only affected by diffusion $D$. If we would choose a specific linear combination of these three states, we would also obtain an eigenvector for eigenvalue zero.
 
 
 
