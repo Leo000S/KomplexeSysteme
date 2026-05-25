@@ -109,6 +109,87 @@ YXY&=
 \end{align}
 
 \subsection*{(b)}
+Due to idempotence and the braid property any word of length three or lager is reducible to length two or smaller, as either a repeated letter ($XX=2X$, $YY=2Y$) or an alternating triplet ($XYX=X$, $YXY=Y$) must occur.
 
+The remaining words are $XY$, $YX$, $X$, $Y$ and the 'empty' word (i.e. the identity $I$).
+
+\subsection*{(c)}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|ccccc}
+        \textcolor{white}{.} & I & X & Y & XY & YX \\
+        \hline
+        I & I & X & Y & XY & YX\\
+        X & X & 2X & XY & 2XY & X \\
+        Y & Y & YX &  2Y&  Y& 2YX\\
+        XY & XY & X & 2XY & XY &2X \\
+        YX & YX & 2YX & Y & 2Y & YX\\
+    \end{tabular}
+    \caption{All possible results for the combination of two monomials (column times row).}
+    \label{tab:placeholder}
+\end{table}
+
+\subsection*{(d)}
+
+\begin{align}
+    \mathcal{L}&= X+Y\\
+    P &= c_0 I + c_1 X + c_2 Y + c_3 XY + c_4 YX
+\end{align}
+\begin{align}
+    \mathcal{L}P&=(X+Y)(c_0 I + c_1 X + c_2 Y + c_3 XY + c_4 YX)\\
+    &=c_0(X+Y)+c_1(2X+YX)+c_2(XY+2Y)+c_3(2XY+Y)+c_4(X+2YX)\\
+    &=0I+(c_0+2c_1+c_4)X + (c_0+2c_2+c_3)Y+(c_2+2c_3)XY+(c_1+2c_4)YX
+\end{align}
+In the ordered basis $B = I, X, Y, XY, YX\}$, a polynomial can be represented as a column vector $\mathbf{c} = (c_0, c_1, c_2, c_3, c_4)^T$. The linear action of the Liouvillian $\mathcal{L}$ in this vector space is explicitly given by the matrix transformation $\mathbf{c}' = M_{\mathcal{L}}\mathbf{c}$:
+\begin{align}
+    M_{\mathcal{L}} = \begin{pmatrix}
+0 & 0 & 0 & 0 & 0 \\
+1 & 2 & 0 & 0 & 1 \\
+1 & 0 & 2 & 1 & 0 \\
+0 & 0 & 1 & 2 & 0 \\
+0 & 1 & 0 & 0 & 2
+\end{pmatrix}
+\end{align}
+
+\subsection*{(e)}
+To find the eigenpolynomials and eigenvalues of $\mathcal{L}$ , we solve the matrix eigenvalue problem $M_{\mathcal{L}} \mathbf{c} = \lambda \mathbf{c}$ using the matrix representation derived in the previous step.
+\begin{align}
+    \begin{pmatrix}
+0 & 0 & 0 & 0 & 0 \\
+1 & 2 & 0 & 0 & 1 \\
+1 & 0 & 2 & 1 & 0 \\
+0 & 0 & 1 & 2 & 0 \\
+0 & 1 & 0 & 0 & 2
+\end{pmatrix} \begin{pmatrix} c_0 \\ c_1 \\ c_2 \\ c_3 \\ c_4 \end{pmatrix} = \lambda \begin{pmatrix} c_0 \\ c_1 \\ c_2 \\ c_3 \\ c_4 \end{pmatrix}
+\end{align}
+
+with the code:
+\begin{minted}{python}
+import sympy as sp
+
+M = sp.Matrix([
+    [0, 0, 0, 0, 0],
+    [1, 2, 0, 0, 1],
+    [1, 0, 2, 1, 0],
+    [0, 0, 1, 2, 0],
+    [0, 1, 0, 0, 2]
+])
+
+EV = M.eigenvals()
+EVec = M.eigenvects()
+
+print(EV, "\n")
+print(EVec, "\n")
+\end{minted}
+we obtain the eigenvalues $\{0, 1, 1, 3, 3\}$ and the corresponding eigenpolynomials are
+\begin{align}
+    P_1 &= 3I - 2X - 2Y + XY + YX\\
+    P_2 &= X - YX\\
+    P_3 &= Y - XY\\
+    P_4 &= X + YX\\
+    P_5 &= Y + XY.
+\end{align}
+The eigenvalues are the same is in the spectrum above, only the multiplicity of the eigenvalue $0$ differs (above it was four, now it's one). The $Temperley-Lieb$ Algebra reduced the eight-dimensional Liouvillian to a five-dimensional matrix.
 
 \end{document}
