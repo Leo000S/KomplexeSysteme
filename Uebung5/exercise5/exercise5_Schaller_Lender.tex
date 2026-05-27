@@ -23,44 +23,44 @@
 
 to prove:
 \begin{align}
-    e^{\mathbf{A}\otimes \mathbb{1}+\mathbb{1}\otimes \mathbf{B}}=e^\mathbf{A}\otimes e^\mathbf{B}
+    e^{\mathbf{A}\otimes \mathbf{1}+\mathbf{1}\otimes \mathbf{B}}=e^\mathbf{A}\otimes e^\mathbf{B}
 \end{align}
-first we show that $\mathbf{X}=\mathbf{A}\otimes \mathbb{1}$ and $\mathbf{Y}=\mathbb{1}\otimes \mathbf{B}$ commute via the relation 
+first we show that $\mathbf{X}=\mathbf{A}\otimes \mathbf{1}$ and $\mathbf{Y}=\mathbf{1}\otimes \mathbf{B}$ commute via the relation 
 \begin{align}
 (\mathbf{A}\otimes \mathbf{B})(\mathbf{C}\otimes \mathbf{D})=(\mathbf{AC})\otimes (\mathbf{BD})
 \label{relation}
 \end{align}
 which emerges directly from the definition of the Kronecker product.
 \begin{align}
-   [\mathbf{X},\mathbf{Y}]&=(\mathbf{A}\otimes \mathbb{1})(\mathbb{1}\otimes \mathbf{B})-(\mathbb{1}\otimes \mathbf{B})(\mathbf{A}\otimes \mathbb{1})\\
-   &=\mathbf{A}\mathbb{1}\otimes\mathbb{1}B-\mathbb{1}\mathbf{A}\otimes \mathbf{B}\mathbb{1}= \mathbf{A}\otimes \mathbf{B} -\mathbf{A}\otimes \mathbf{B}=0
+   [\mathbf{X},\mathbf{Y}]&=(\mathbf{A}\otimes \mathbf{1})(\mathbf{1}\otimes \mathbf{B})-(\mathbf{1}\otimes \mathbf{B})(\mathbf{A}\otimes \mathbf{1})\\
+   &=\mathbf{A}\mathbf{1}\otimes\mathbf{1}B-\mathbf{1}\mathbf{A}\otimes \mathbf{B}\mathbf{1}= \mathbf{A}\otimes \mathbf{B} -\mathbf{A}\otimes \mathbf{B}=0
 \end{align}
 now we can use:
 \begin{align}
-    e^{\mathbf{A}\otimes \mathbb{1}+\mathbb{1}\otimes \mathbf{B}}=e^{\mathbf{X}+\mathbf{Y}}=e^\mathbf{X}e^\mathbf{Y}= e^{\mathbf{A}\otimes \mathbb{1}}e^{\mathbb{1}\otimes \mathbf{B}}
+    e^{\mathbf{A}\otimes \mathbf{1}+\mathbf{1}\otimes \mathbf{B}}=e^{\mathbf{X}+\mathbf{Y}}=e^\mathbf{X}e^\mathbf{Y}= e^{\mathbf{A}\otimes \mathbf{1}}e^{\mathbf{1}\otimes \mathbf{B}}
 \end{align}
 the general matrix exponential is 
 \begin{align}
     e^\mathbf{X}&=\sum^\infty_{k=0}\frac{\mathbf{\mathbf{X}}^k}{k!}\\
-    \Rightarrow     e^{\mathbf{A}\otimes \mathbb{1}}&=\sum^\infty_{k=0}\frac{(\mathbf{A}\otimes\mathbb{1})^k}{k!}
+    \Rightarrow     e^{\mathbf{A}\otimes \mathbf{1}}&=\sum^\infty_{k=0}\frac{(\mathbf{A}\otimes\mathbf{1})^k}{k!}
 \end{align}
-applying Eq.\ref{relation} repeatedly on $(\mathbf{A}\otimes\mathbb{1})^k$:
+applying Eq.\ref{relation} repeatedly on $(\mathbf{A}\otimes\mathbf{1})^k$:
 \begin{align}
-(\mathbf{A}\otimes\mathbb{1})^k&=(\mathbf{A}\otimes\mathbb{1})(\mathbf{A}\otimes\mathbb{1})(\mathbf{A}\otimes\mathbb{1})^{k-2}=\\
-    &=(\mathbf{A}^2\otimes\mathbb{1}^2)(\mathbf{A}\otimes\mathbb{1})(\mathbf{A}\otimes\mathbb{1})(\mathbf{A}\otimes\mathbb{1})^{k-4}\\
-    &=(\mathbf{A}^2\otimes\mathbb{1}^2)(\mathbf{A}^2\otimes\mathbb{1^2})(\mathbf{A}\otimes\mathbb{1})^{k-4}\\
-    &=(\mathbf{A}^4\otimes\mathbb{1}^4)(\mathbf{A}\otimes\mathbb{1})^{k-4}= ...\\
-    &=\mathbf{A}^k\otimes\mathbb{1}^k
+(\mathbf{A}\otimes\mathbf{1})^k&=(\mathbf{A}\otimes\mathbf{1})(\mathbf{A}\otimes\mathbf{1})(\mathbf{A}\otimes\mathbf{1})^{k-2}=\\
+    &=(\mathbf{A}^2\otimes\mathbf{1}^2)(\mathbf{A}\otimes\mathbf{1})(\mathbf{A}\otimes\mathbf{1})(\mathbf{A}\otimes\mathbf{1})^{k-4}\\
+    &=(\mathbf{A}^2\otimes\mathbf{1}^2)(\mathbf{A}^2\otimes\mathbb{1^2})(\mathbf{A}\otimes\mathbf{1})^{k-4}\\
+    &=(\mathbf{A}^4\otimes\mathbf{1}^4)(\mathbf{A}\otimes\mathbf{1})^{k-4}= ...\\
+    &=\mathbf{A}^k\otimes\mathbf{1}^k
 \end{align}
 now we can write the exponential as:
 \begin{align}
-    e^{\mathbf{A}\otimes \mathbb{1}}&= \sum^\infty_{k=0}\frac{(\mathbf{A}\otimes\mathbb{1})^k}{k!}=\sum^\infty_{k=0}\frac{\mathbf{A}^k\otimes\mathbb{1}^k}{k!}\\
-    \intertext{since $\mathbb{1}^k=\mathbb{1}$:}e^{\mathbf{A}\otimes \mathbb{1}}&=\sum^\infty_{k=0}\frac{\mathbf{A}^k}{k!}\otimes\mathbb{1}=e^\mathbf{A}\otimes\mathbb{1}
+    e^{\mathbf{A}\otimes \mathbf{1}}&= \sum^\infty_{k=0}\frac{(\mathbf{A}\otimes\mathbf{1})^k}{k!}=\sum^\infty_{k=0}\frac{\mathbf{A}^k\otimes\mathbf{1}^k}{k!}\\
+    \intertext{since $\mathbf{1}^k=\mathbf{1}$:}e^{\mathbf{A}\otimes \mathbf{1}}&=\sum^\infty_{k=0}\frac{\mathbf{A}^k}{k!}\otimes\mathbf{1}=e^\mathbf{A}\otimes\mathbf{1}
 \end{align}
-following the same arguments we see $e^{\mathbb{1}\otimes \mathbf{B}}=\mathbb{1}\otimes e^\mathbf{B}$ and thus we showed
+following the same arguments we see $e^{\mathbf{1}\otimes \mathbf{B}}=\mathbf{1}\otimes e^\mathbf{B}$ and thus we showed
 \begin{align}
-    e^{A\otimes \mathbb{1}+\mathbb{1}\otimes \mathbf{B}}&=e^{A\otimes \mathbb{1}}e^{\mathbb{1}\otimes \mathbf{B}}= (e^\mathbf{A}\otimes\mathbb{1})(\mathbb{1}\otimes e^\mathbf{B})\\
-    &=(e^\mathbf{A}\mathbb{1})\otimes(\mathbb{1}e^\mathbf{B})=e^\mathbf{A}\otimes e^\mathbf{B}
+    e^{A\otimes \mathbf{1}+\mathbf{1}\otimes \mathbf{B}}&=e^{A\otimes \mathbf{1}}e^{\mathbf{1}\otimes \mathbf{B}}= (e^\mathbf{A}\otimes\mathbf{1})(\mathbf{1}\otimes e^\mathbf{B})\\
+    &=(e^\mathbf{A}\mathbf{1})\otimes(\mathbf{1}e^\mathbf{B})=e^\mathbf{A}\otimes e^\mathbf{B}
 \end{align}
 
 \subsection*{(b)}
@@ -81,11 +81,11 @@ for the Tensor Product:
     [\sigma_i \otimes \sigma_i, \sigma_j \otimes \sigma_j] &= (\sigma_i \otimes \sigma_i)(\sigma_j \otimes \sigma_j) - (\sigma_j \otimes \sigma_j)(\sigma_i \otimes \sigma_i)\\
     &=(\sigma_i \sigma_j \otimes \sigma_i \sigma_j) - (\sigma_j \sigma_i \otimes \sigma_j \sigma_i)
 \end{align}
-with $\sigma_i \sigma_j=\delta_{i,j}\mathbb{1}+i \epsilon_{ijk} \sigma_k$ we have to look at two cases.
+with $\sigma_i \sigma_j=\delta_{i,j}\mathbf{1}+i \epsilon_{ijk} \sigma_k$ we have to look at two cases.
 
-case 1: $i=j \Rightarrow \sigma_i \sigma_j=\mathbb{1}$. The Tensor Product Commutator is then:
+case 1: $i=j \Rightarrow \sigma_i \sigma_j=\mathbf{1}$. The Tensor Product Commutator is then:
 \begin{align}
-    (\sigma_i \sigma_j \otimes \sigma_i \sigma_j) - (\sigma_j \sigma_i \otimes \sigma_j \sigma_i)&= (\mathbb{1}\otimes\mathbb{1})-(\mathbb{1}\otimes\mathbb{1})=0
+    (\sigma_i \sigma_j \otimes \sigma_i \sigma_j) - (\sigma_j \sigma_i \otimes \sigma_j \sigma_i)&= (\mathbf{1}\otimes\mathbf{1})-(\mathbf{1}\otimes\mathbf{1})=0
 \intertext{case 2: $i\neq j \Rightarrow \sigma_i \sigma_j=i \epsilon_{ijk} \sigma_k$. The Tensor Product Commutator is then:}
     (\sigma_i \sigma_j \otimes \sigma_i \sigma_j) - (\sigma_j \sigma_i \otimes \sigma_j \sigma_i)&= (i \sigma_k\otimes i\sigma_k)-(-i \sigma_k\otimes-i\sigma_k)\\
     &=-(\sigma_k\otimes\sigma_k)+(\sigma_k\otimes\sigma_k)= 0
@@ -97,7 +97,7 @@ case 1: $i=j \Rightarrow \sigma_i \sigma_j=\mathbb{1}$. The Tensor Product Commu
 \begin{align}
      e^{\phi \sigma_i \otimes \sigma_j}&= \sum_{n=0}^{\infty} \frac{(\phi \sigma_i \otimes \sigma_j)^n}{n!}\\
      \intertext{with}
-     (\sigma_i \otimes \sigma_j)^2&=(\sigma_i \otimes \sigma_j)(\sigma_i \otimes \sigma_j)= (\sigma_i^2 \otimes \sigma_j^2)= \mathbb{1}\otimes\mathbb{1}=\mathbb{I}\\
+     (\sigma_i \otimes \sigma_j)^2&=(\sigma_i \otimes \sigma_j)(\sigma_i \otimes \sigma_j)= (\sigma_i^2 \otimes \sigma_j^2)= \mathbf{1}\otimes\mathbf{1}=\mathbb{I}\\
      \intertext{we can write}
      \sum_{n=0}^{\infty} \frac{(\phi \sigma_i \otimes \sigma_j)^n}{n!} &= \mathbb{I}\sum_{k=0}^{\infty} \frac{\phi^{2k}}{(2k)!}+ \sigma_i \otimes \sigma_j\sum_{k=0}^{\infty} \frac{\phi^{2k+1}}{(2k+1)!}\\
      \intertext{the series on the right side correspond to the hyperbolic functions.}
@@ -126,7 +126,7 @@ $\mathcal{L}_{44}=\mu$: has to be chosen such, that the column sum is zero, to e
 \end{align}
 
 \subsection*{(b)}
-We now have to perform two Kronecker products $\mathcal{L}^{(2)} \otimes \mathbb{1}$ and $\mathbb{1} \otimes \mathcal{L}^{(2)}$ and add them together. In the end we obtain the following 8x8 matrix, which was calculated using the python package $sympy$.
+We now have to perform two Kronecker products $\mathcal{L}^{(2)} \otimes \mathbf{1}$ and $\mathbf{1} \otimes \mathcal{L}^{(2)}$ and add them together. In the end we obtain the following 8x8 matrix, which was calculated using the python package $sympy$.
 \begin{align}
 \mathcal{L}^{(3)} &=
 \underbrace{
@@ -134,16 +134,16 @@ We now have to perform two Kronecker products $\mathcal{L}^{(2)} \otimes \mathbb
 \mathcal{L}^{(2)}  & 0 \\
 0                  & \mathcal{L}^{(2)}
 \end{pmatrix}
-}_{\mathbb{1}\otimes \mathcal{L}^{(2)}}
+}_{\mathbf{1}\otimes \mathcal{L}^{(2)}}
 +
 \underbrace{
 \begin{pmatrix}
-0\mathbb{1} & 0\mathbb{1} & 0\mathbb{1} & -\mu \mathbb{1} \\
-0\mathbb{1} & (D+\lambda)\mathbb{1} & -D\mathbb{1} & 0\mathbb{1} \\
-0\mathbb{1} & -D\mathbb{1} & (D+\lambda)\mathbb{1} & 0\mathbb{1} \\
-0\mathbb{1} & -\lambda\mathbb{1} & -\lambda\mathbb{1} & \mu\mathbb{1}
+0\mathbf{1} & 0\mathbf{1} & 0\mathbf{1} & -\mu \mathbf{1} \\
+0\mathbf{1} & (D+\lambda)\mathbf{1} & -D\mathbf{1} & 0\mathbf{1} \\
+0\mathbf{1} & -D\mathbf{1} & (D+\lambda)\mathbf{1} & 0\mathbf{1} \\
+0\mathbf{1} & -\lambda\mathbf{1} & -\lambda\mathbf{1} & \mu\mathbf{1}
 \end{pmatrix}
-}_{\mathcal{L}^{(2)}\otimes \mathbb{1}} \\
+}_{\mathcal{L}^{(2)}\otimes \mathbf{1}} \\
     &=
 \left[\begin{matrix}0 & 0 & 0 & - \mu & 0 & 0 & - \mu & 0\\0 & D + \lambda & - D & 0 & 0 & 0 & 0 & - \mu\\0 & - D & 2 D + 2 \lambda & 0 & - D & 0 & 0 & 0\\0 & - \lambda & - \lambda & D + \lambda + \mu & 0 & - D & 0 & 0\\0 & 0 & - D & 0 & D + \lambda & 0 & 0 & - \mu\\0 & 0 & 0 & - D & 0 & 2 D + 2 \lambda & - D & 0\\0 & 0 & - \lambda & 0 & - \lambda & - D & D + \lambda + \mu & 0\\0 & 0 & 0 & - \lambda & 0 & - 2 \lambda & - \lambda & 2 \mu\end{matrix}\right]
 \end{align}
