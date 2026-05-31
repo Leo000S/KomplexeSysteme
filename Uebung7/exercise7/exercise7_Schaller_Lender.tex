@@ -9,7 +9,8 @@
 \usepackage{listings}
 \usepackage{minted}
 \usepackage{booktabs}
-\usepackage{physics}        %braket schreibweise
+\usepackage{physics}
+\usepackage{amssymb}%braket schreibweise
 \setlength{\parindent}{0pt}
 
 \title{Physics of Complex Systems: Exercise }
@@ -126,6 +127,52 @@ for k in range(max_iter):
     \caption{Steepest decent method for $f(x) = cosh(x)$}
 \end{figure}
 
+    \subsection*{(d)}
+$M$ is a real and symmetric matrix($M = M^T$), so $M^2$ is symmetric as well following the argument
+\begin{align}
+    M^2)^T = (M \cdot M)^T = M^T M^T = M^2
+\end{align}
+We can rewrite $f(x)$ in the following way:
+\begin{align*}
+f(\vec{x}) &= \frac{1}{2} \left( \vec{x}^T - \vec{a}^T \right) M^2 (\vec{x} - \vec{a}) \\
+&= \frac{1}{2} \left( \vec{x}^T M^2 \vec{x} - \vec{x}^T M^2 \vec{a} - \vec{a}^T M^2 \vec{x} + \vec{a}^T M^2 \vec{a} \right)
+\end{align*}
+Beacause of the symmetry of $M^2$ we can interchange the vectors in the scalar product $\vec{x}^T M^2 \vec{a} = \vec{a}^T M^2 \vec{x}$ and obtain the structure of $f(x)$ we aimed for:
+\begin{align}
+    f(\vec{x}) = \frac{1}{2} \vec{x}^T M^2 \vec{x} - (\text{M}^2 \vec{a})^T \vec{x} + \frac{1}{2} \vec{a}^T M^2 \vec{a}
+\end{align}
+We observe the following constants:
+\begin{itemize}
+    \item $A = M^2$
+    \item $\vec{b} = -M^2 \vec{a}$
+    \item $c = \frac{1}{2} \vec{a}^T M^2 \vec{a}$
+\end{itemize}
+
+\subsection*{(e)}
+We know that $M$ has only nonzero eigenvalues $\lambda_i$, so $M^2$ has the eigenvalues $\lambda_i^2$. This means that $M^2$ is a positive definite matrix, equally that the scalar product $v^T M^2 v$ is positive.
+Using $v=x-a$, we observe that $f(x)$ is also positive definite. The smallest output $f(x)=0$ will be reached with the zero vector $\vec{0} = v=x-a$. As every nonzero vector $v$ will produce an output $f(x)>0$, the global minimum is represented by $x^*=a$.
+
+\subsection*{(f)}
+
+The derivative of $f(x)$ is
+\begin{align}
+    \nabla f(\vec{x}_k) = A \vec{x}_k + \vec{b} = M^2 \vec{x}_k - M^2 \vec{a} = M^2 (\vec{x}_k - \vec{a})$$
+\end{align}
+To tune the optimal iteration step, we have to consider the vector generalized version of the steepest decent iteration
+\begin{align*}
+\vec{x}_{k+1} &= \vec{x}_k - \alpha \nabla f(\vec{x}_k) \\
+\end{align*}
+For just one iteration step, this simplifies to
+\begin{align*}
+\vec{a} &= \vec{x}_0 - \alpha M^2 (\vec{x}_0 - \vec{a}) \\
+\vec{a} - \vec{x}_0 &= -\alpha M^2 (\vec{x}_0 - \vec{a}) \\
+\vec{a} - \vec{x}_0 &= \alpha M^2 (\vec{a} - \vec{x}_0)
+\end{align*}
+This condition is fulfilled if $\alpha M^2$ is the identity. This is only fulfilled for
+\begin{align}
+    \alpha = (M^2)^{-1}
+\end{align}
+if $M^2$ is invertable. This means, that a one step iteration is done with the (matrix-valued) coefficient $\alpha$
 \end{document}
 
 # lualatex -shell-escape Uebung6/exercise6/exercise6_Schaller_Lender.tex
