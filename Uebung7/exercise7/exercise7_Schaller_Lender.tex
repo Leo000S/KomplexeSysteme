@@ -24,9 +24,9 @@ A perceptron works the following. A input vector $\vec{x}$ is mapped to a reel n
 \begin{align}
     S = \vec{w} \vec{x} + b \text{ .}
 \end{align}
-Here, we have to define suitable weights $\vec{w}$ and the bias $b$. The resultning number $S$ is the evaluated with a testfunction, which is in our case the Heavyside function $\sigma$.
+Here, we have to define suitable weights $\vec{w}$ and the bias $b$. The resulting number $S$ is the evaluated with a test function, which is in our case the Heaviside  function $\sigma$.
 \subsection*{(a)}
-A NAND gate evaluates an input input($x_1x_2$) and gives us 0 for the cases 00, 01, 10 and 1 for 11 case. Considering $\sigma$ as testfunction, we obtain the following conditions:
+A NAND gate evaluates an input input($x_1x_2$) and gives us 0 for the cases 00, 01, 10 and 1 for 11 case. Considering $\sigma$ as test function, we obtain the following conditions:
 
 \begin{align}
 x_1x_2 = 00 &: b \ge 0 \\
@@ -34,7 +34,7 @@ x_1x_2 = 10 &: w_1 + b \ge 0 \\
 x_1x_2 = 01 &: w_2 + b \ge 0 \\
 x_1x_2 = 11 &: w_1 + w_2 + b < 0
 \end{align}
-We see that $b$ has to be positive, and that $b$ has to be greater then $w_1$ and $w_2$. The last equation gives the upper limit für the weights, saying the at least on of them hast to be negative. Let us no consider symmetric inputs ($w_1 = w_2 = w$), we obtain:
+We see that $b$ has to be positive, and that $b$ has to be greater then $w_1$ and $w_2$. The last equation gives the upper limit for the weights, saying the at least on of them hast to be negative. Let us no consider symmetric inputs ($w_1 = w_2 = w$), we obtain:
 
 \begin{align}
     b &\ge 0 \\
@@ -42,7 +42,7 @@ We see that $b$ has to be positive, and that $b$ has to be greater then $w_1$ an
     b &< -2w
 \end{align}
 
-For this szenario, we can choose $b$ freely and have to select the corresponding weights. If we choose $b=1$ for example, we can use $-1<w<-0.5$
+For this scenario, we can choose $b$ freely and have to select the corresponding weights. If we choose $b=1$ for example, we can use $-1<w<-0.5$
 
 For a example with different weights, the resulting values for $S$ with $b=1$,$w_1=-0.9$ and $w_2 = -0.8$ are presented:
 \begin{align}
@@ -51,7 +51,7 @@ x_1x_2 = 10 &: S=0.1 \\
 x_1x_2 = 01 &: S=0.2 \\
 x_1x_2 = 11 &: S=-0.7
 \end{align}
-This outcome fulfills the NAND rule.
+This outcome fulfils the NAND rule.
 
 \subsection*{(b)}
 With the same receipt, we now want to calculate the bias and weights for a XOR gate. A XOR gate responds 1 for unequal inputs 01, 10 and a 0 for equal inputs 00 and 11. This leads to the following conditions:
@@ -69,7 +69,7 @@ w_1 + w_2 + 2b  = \underset{<0}{(w_1 + w_2 + b)} + \underset{<0}{b} \ge 0
 \end{align}
 But we know that the first and the second summand have to be negative. This contradiction shows, that we cannot build a XOR gate with one simple perceptron.
 
-\section*{Task 7.2: steepes decent method}
+\section*{Task 7.2: steepest decent method}
 \subsection*{(a)}
 The method of steepest decent is a simple iterative method to find global minima. For the given polynomial, the minima is at $x^* = - b/a$ for $a<0$. The iterative formula
 \begin{align}
@@ -87,9 +87,9 @@ This sequence has to converge to 0, otherwise the steepest decent method will no
 \begin{align}
 |1-\alpha a| < 1 \iff -1 < 1-\alpha a < 1 \iff -2 < -\alpha a < 0 \iff 0 < \alpha < \frac{2}{a}
 \end{align}
-This means, that we will succesfully iterate for $0 < \alpha < \frac{2}{a}$
+This means, that we will successfully iterate for $0 < \alpha < \frac{2}{a}$
 \subsection*{(b)}
-The perfect step is exactly in the middle of the intervall for all allowed $\alpha$ values, which is $\alpha_1 = 1/a$. We obtain for $x_1$ global minimum:
+The perfect step is exactly in the middle of the interval for all allowed $\alpha$ values, which is $\alpha_1 = 1/a$. We obtain for $x_1$ global minimum:
 \begin{align}
 x_1 = x_0 - \frac{1}{a} \left( a x_0 + b \right) = - \frac{b}{a} = x^*
 \end{align}
@@ -137,7 +137,7 @@ We can rewrite $f(x)$ in the following way:
 f(\vec{x}) &= \frac{1}{2} \left( \vec{x}^T - \vec{a}^T \right) M^2 (\vec{x} - \vec{a}) \\
 &= \frac{1}{2} \left( \vec{x}^T M^2 \vec{x} - \vec{x}^T M^2 \vec{a} - \vec{a}^T M^2 \vec{x} + \vec{a}^T M^2 \vec{a} \right)
 \end{align*}
-Beacause of the symmetry of $M^2$ we can interchange the vectors in the scalar product $\vec{x}^T M^2 \vec{a} = \vec{a}^T M^2 \vec{x}$ and obtain the structure of $f(x)$ we aimed for:
+Because of the symmetry of $M^2$ we can interchange the vectors in the scalar product $\vec{x}^T M^2 \vec{a} = \vec{a}^T M^2 \vec{x}$ and obtain the structure of $f(x)$ we aimed for:
 \begin{align}
     f(\vec{x}) = \frac{1}{2} \vec{x}^T M^2 \vec{x} - (\text{M}^2 \vec{a})^T \vec{x} + \frac{1}{2} \vec{a}^T M^2 \vec{a}
 \end{align}
@@ -149,14 +149,14 @@ We observe the following constants:
 \end{itemize}
 
 \subsection*{(e)}
-We know that $M$ has only nonzero eigenvalues $\lambda_i$, so $M^2$ has the eigenvalues $\lambda_i^2$. This means that $M^2$ is a positive definite matrix, equally that the scalar product $v^T M^2 v$ is positive.
-Using $v=x-a$, we observe that $f(x)$ is also positive definite. The smallest output $f(x)=0$ will be reached with the zero vector $\vec{0} = v=x-a$. As every nonzero vector $v$ will produce an output $f(x)>0$, the global minimum is represented by $x^*=a$.
+We know that $M$ has only non-zero eigenvalues $\lambda_i$, so $M^2$ has the eigenvalues $\lambda_i^2$. This means that $M^2$ is a positive definite matrix, equally that the scalar product $v^T M^2 v$ is positive.
+Using $v=x-a$, we observe that $f(x)$ is also positive definite. The smallest output $f(x)=0$ will be reached with the zero vector $\vec{0} = v=x-a$. As every non-zero vector $v$ will produce an output $f(x)>0$, the global minimum is represented by $x^*=a$.
 
 \subsection*{(f)}
 
 The derivative of $f(x)$ is
 \begin{align}
-    \nabla f(\vec{x}_k) = A \vec{x}_k + \vec{b} = M^2 \vec{x}_k - M^2 \vec{a} = M^2 (\vec{x}_k - \vec{a})$$
+    \nabla f(\vec{x}_k) = A \vec{x}_k + \vec{b} = M^2 \vec{x}_k - M^2 \vec{a} = M^2 (\vec{x}_k - \vec{a})
 \end{align}
 To tune the optimal iteration step, we have to consider the vector generalized version of the steepest decent iteration
 \begin{align*}
@@ -172,7 +172,7 @@ This condition is fulfilled if $\alpha M^2$ is the identity. This is only fulfil
 \begin{align}
     \alpha = (M^2)^{-1}
 \end{align}
-if $M^2$ is invertable. This means, that a one step iteration is done with the (matrix-valued) coefficient $\alpha$
+if $M^2$ is invertible. This means, that a one step iteration is done with the (matrix-valued) coefficient $\alpha$
 \end{document}
 
 # lualatex -shell-escape Uebung6/exercise6/exercise6_Schaller_Lender.tex
