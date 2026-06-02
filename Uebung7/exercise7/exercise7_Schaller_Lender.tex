@@ -120,17 +120,18 @@ for k in range(max_iter):
         \cosh (x) = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} \approx 1 + \frac{x^2}{2}
     \end{align}
     It is the same case as in task (a) and (b) with $a=1$. We used $\alpha \approx 1/a = 1$
-    The Iteration with its steps is shown in Fig. \ref{Fig:Cosh}#
+    The Iteration with its steps is shown in Fig. \ref{cosh}.
     \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\linewidth]{cosh.png}
     \caption{Steepest decent method for $f(x) = cosh(x)$}
+    \label{cosh}
 \end{figure}
 
     \subsection*{(d)}
 $M$ is a real and symmetric matrix($M = M^T$), so $M^2$ is symmetric as well following the argument
 \begin{align}
-    M^2)^T = (M \cdot M)^T = M^T M^T = M^2
+    (M^2)^T = (M \cdot M)^T = M^T M^T = M^2
 \end{align}
 We can rewrite $f(x)$ in the following way:
 \begin{align*}
@@ -144,12 +145,12 @@ Because of the symmetry of $M^2$ we can interchange the vectors in the scalar pr
 We observe the following constants:
 \begin{itemize}
     \item $A = M^2$
-    \item $\vec{b} = -M^2 \vec{a}$
+    \item $\vec{b} = -(M^2 \vec{a})^T$
     \item $c = \frac{1}{2} \vec{a}^T M^2 \vec{a}$
 \end{itemize}
 
 \subsection*{(e)}
-We know that $M$ has only non-zero eigenvalues $\lambda_i$, so $M^2$ has the eigenvalues $\lambda_i^2$. This means that $M^2$ is a positive definite matrix, equally that the scalar product $v^T M^2 v$ is positive.
+We know that $M$ has only non-zero eigenvalues $\lambda_i$, so $M^2$ has the eigenvalues $\lambda_i^2$ and is positive definite. Equally the scalar product $v^T M^2 v$ is positive.
 Using $v=x-a$, we observe that $f(x)$ is also positive definite. The smallest output $f(x)=0$ will be reached with the zero vector $\vec{0} = v=x-a$. As every non-zero vector $v$ will produce an output $f(x)>0$, the global minimum is represented by $x^*=a$.
 
 \subsection*{(f)}
@@ -172,7 +173,9 @@ This condition is fulfilled if $\alpha M^2$ is the identity. This is only fulfil
 \begin{align}
     \alpha = (M^2)^{-1}
 \end{align}
-if $M^2$ is invertible. This means, that a one step iteration is done with the (matrix-valued) coefficient $\alpha$
+if $M^2$ is invertible.
+
+This means, that a one step iteration is done with the (matrix-valued) coefficient $\alpha=(M^2)^{-1}$.
 \end{document}
 
 # lualatex -shell-escape Uebung6/exercise6/exercise6_Schaller_Lender.tex
