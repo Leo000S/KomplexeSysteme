@@ -21,11 +21,67 @@
 
 \section*{Task 8.1: Fireflies}
 
+    \subsection*{(a)}
+    We need an output range within the interval $[0,1]$.
+    The activation function in the last layer must give an output accordingly. This requirement is fulfilled by the logistic function 
+    \begin{align}
+        \sigma(x) = \frac{1}{1 + e^{-\beta x}}
+    \end{align}
+    which gives an output in exactly this interval.
 
+    \subsection*{(b)}
+    Given that the probability of a firefly emitting light is $\langle t_i\rangle=p_i$, the complementary event is $\langle1- t_i\rangle=1-p_i$. As the expectation operator is linear, we can substitute these expected values into the cross-entropy formula:
+    \begin{align}
+    H= \langle H_S \rangle=−\frac{1}{N}\sum^N_{i=1}\left(\langle t_i\rangle \text{log}_2(q_i)+(\langle 1− t_i\rangle)\text{log}_2(1−q_i)\right)
+    \end{align}
+    
+    Substituting $\langle t_i\rangle=p_i$ yields the final expectation value:
+    \begin{align}
+        H =−\frac{1}{N}\sum^N_{i=1}(p_i\text{log}_2(q_i)+(1−p_i)\text{log}_2(1−q_i))
+    \end{align}
+
+    \subsection*{(c)}
+    Rewrite the objective function using the natural logarithm ($\log_2(x) = \frac{\ln(x)}{\ln(2)}$):
+    \begin{align}
+        H = -\frac{1}{N \ln 2} \sum_{i=1}^N \Big( p_i \ln(q_i) + (1 - p_i) \ln(1 - q_i) \Big)
+    \end{align}
+
+    Verify $q_i = p_i$ is a critical point:
+    \begin{align}
+        \frac{\partial H}{\partial q_i} = -\frac{1}{N \ln 2} \left( \frac{p_i}{q_i} - \frac{1 - p_i}{1 - q_i} \right) = 0
+    \end{align}
+    This is only satisfied if 
+    \begin{align}
+        \frac{p_i}{q_i}&=\frac{1-p_i}{1-q_i}\\[0.2cm]
+        p_i(1 - q_i) &= q_i(1 - p_i)\\[0.2cm]
+        p_i - p_i q_i &= q_i - p_i q_i\\[0.2cm]
+       \Rightarrow q_i &= p_i
+    \end{align}
+
+    Verify the critical point at $q_i = p_i$ is the global minimum:
+    \begin{align}
+        \frac{\partial^2 H}{\partial q_i^2} 
+        &= -\frac{1}{N \ln 2} \left( -\frac{p_i}{q_i^2} - \frac{1 - p_i}{(1 - q_i)^2} \right)\\
+        &= \frac{1}{N \ln 2} \left( \frac{p_i}{q_i^2} + \frac{1 - p_i}{(1 - q_i)^2} \right)
+    \end{align}
+    Since $p_i$ and $q_i$ lie in the interval $[0,1]$, the second derivative is strictly positive. This means, H is strictly convex, i.e., proves the critical point at $q_i = p_i$ is the global minimum.
+
+    \subsection*{(d)}
+
+    \subsection*{(e)}
 
 
 
 \section*{Task 8.2: Cross Entropy}
+
+    \subsection*{(a)}
+
+
+    \subsection*{(b)}
+
+
+
+    \subsection*{(c)}
 
 
 \end{document}
