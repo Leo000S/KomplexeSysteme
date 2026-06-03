@@ -41,6 +41,12 @@
     \end{align}
 
     \subsection*{(c)}
+    By the Central Limit Theorem, the variance of the sample mean decreases inversely with the dataset size:\begin{align}
+        \text{Var}(H_S) \propto \frac{1}{N}
+    \end{align}
+    For a sufficiently large dataset, the statistical fluctuations around the expected value become negligibly small, making $H_S \approx \langle H_S \rangle = H$ a mathematically robust assumption.
+
+    \subsection*{(d)}
     Rewrite the objective function using the natural logarithm ($\log_2(x) = \frac{\ln(x)}{\ln(2)}$):
     \begin{align}
         H = -\frac{1}{N \ln 2} \sum_{i=1}^N \Big( p_i \ln(q_i) + (1 - p_i) \ln(1 - q_i) \Big)
@@ -65,8 +71,7 @@
         &= \frac{1}{N \ln 2} \left( \frac{p_i}{q_i^2} + \frac{1 - p_i}{(1 - q_i)^2} \right)
     \end{align}
     Since $p_i$ and $q_i$ lie in the interval $[0,1]$, the second derivative is strictly positive. This means, H is strictly convex, i.e., proves the critical point at $q_i = p_i$ is the global minimum.
-
-    \subsection*{(d)}
+    
 
     \subsection*{(e)}
 
