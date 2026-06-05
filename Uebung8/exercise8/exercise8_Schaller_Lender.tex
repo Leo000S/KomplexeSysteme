@@ -97,13 +97,46 @@
 \section*{Task 8.2: Cross Entropy}
 
     \subsection*{(a)}
-
+    \begin{align}
+        \mathcal{E}= -\sum_{\mu=1}^M p_\mu(\Vec{x}) \ln{q_\mu(\Vec{x})}
+    \end{align}
 
     \subsection*{(b)}
-
-
-
+    Two constraints have to be taken into account:
+    \begin{align}
+    \sum_{\mu=1}^M q_\mu(\Vec{x})=1\hspace{2cm} \text{and} \hspace{2cm}
+     q_\mu \in [0,1]
+    \end{align}
+    The first constraint makes sure, that the predicted probabilities for all outcomes sums to one, i.e., the distribution is normalized.
+    The second, that all $q_\mu$ are actual probabilities (non negative and not greater than one).
+    
     \subsection*{(c)}
+    The general Lagrange function:
+    \begin{align}
+        \mathcal{L}=f(x)+\langle\lambda, g(x)\rangle
+        \intertext{where $\lambda$ is the Lagrange multiplier. For our case we use the dot product for the inner product and consider a optimization problem with one constraint:
+        \begin{itemize}
+            \item minimize $f(x)$
+            \item subject to $g(x)=0$
+        \end{itemize}
+        Our Lagrangian with the multiplier $\lambda$ is then}
+        \mathcal{L}(q, \lambda) = -\sum_{\mu=1}^{M} p_\mu \log q_\mu + \lambda \left( \sum_{\mu=1}^{M} q_\mu - 1 \right)
+    \end{align}
+    To find the extremum, we take the partial derivative of $\mathcal{L}$ with respect to a specific predicted probability $q_\mu$ and set it to zero:
+    \begin{align}
+    \frac{\partial \mathcal{L}}{\partial q_\mu} &= -\frac{p_\mu}{q_\mu} + \lambda = 0\\[0.2cm]
+    \Rightarrow q_\mu&=\frac{p_\mu}{\lambda}
+    \intertext{now sum both sides over all possible outcomes}
+    \sum_{\mu=1}^{M} q_\mu = \sum_{\mu=1}^{M} \frac{p_\mu}{\lambda}
+    \intertext{now we apply the constraint $\sum_{\mu=1}^{M} q_\mu = 1$:}
+    1= \sum_{\mu=1}^{M} \frac{p_\mu}{\lambda}
+    \intertext{Since $p$ is a true probability distribution, its probabilities also sum to 1 ($\sum_{\mu=1}^{M} p_\mu = 1$):}
+    1 = \frac{1}{\lambda} (1) \Rightarrow \lambda = 1
+    \end{align}
+    Substituting $\lambda = 1$ back into the expression for $q_\mu$:
+    \begin{align}
+        q_\mu = p_\mu \quad \forall \mu \in \{1 \dots M\}
+    \end{align}
 
 
 \end{document}
