@@ -74,18 +74,23 @@
     
 
     \subsection*{(e)}
-    The Kullback-Leibler divergence is
+    The general Kullback-Leibler divergence is
     \begin{align}
         D_{KL}(P||Q)= \sum_{x\in\mathcal{X}} P(x)\ln\left(\frac{P(x)}{Q(x)}\right)
+        \intertext{for a binary distribution}
+        D_{KL, binary}(p \parallel q) = p \log_2 \frac{p}{q} + (1-p) \log_2 \frac{1-p}{1-q}
     \end{align}
+% https://doi.org/10.1002%2F047174882X  chapter 2.4
     Calculating $H-H_{min}$: 
     \begin{align}
         H -H_{min} &= -\frac{1}{N \ln 2} \left[\sum_{i=1}^N \Big( p_i \ln(q_i) + (1 - p_i) \ln(1 - q_i) \Big) - \sum_{i=1}^N \Big( p_i \ln(p_i) + (1 - p_i) \ln(1 - p_i) \Big) \right]\\
         &= -\frac{1}{N \ln 2} \sum_{i=1}^N \Big( p_i \ln(q_i) + (1 - p_i) \ln(1 - q_i)  -   p_i \ln(p_i) - (1 - p_i) \ln(1 - p_i) \Big) \\
         &=-\frac{1}{N \ln 2} \sum_{i=1}^N \Big( p_i \big[\ln(q_i)-\ln(p_i)\big] + (1 - p_i) \big[\ln(1 - q_i)  -    \ln(1 - p_i)\big] \Big)\\
-        &=-\frac{1}{N \ln 2}\sum_{i=1}^N \Bigg( p_i \ln\left(\frac{q_i}{p_i}\right) + (1 - p_i)\ln\left(\frac{1 - q_i}{1-p_i}\right) \Bigg)
+        &=-\frac{1}{N \ln 2}\sum_{i=1}^N \Bigg( p_i \ln\left(\frac{q_i}{p_i}\right) + (1 - p_i)\ln\left(\frac{1 - q_i}{1-p_i}\right) \Bigg)\\
+        &=\frac{1}{N}\sum_{i=1}^N \Bigg( p_i \log_2\left(\frac{p_i}{q_i}\right) + (1 - p_i)\log_2\left(\frac{1 - p_i}{1-q_i}\right) \Bigg)\\
+        &=\frac{1}{N}\sum_{i=1}^N  D_{KL, binary}(p \parallel q) 
     \end{align}
-    
+    Therefore, the difference $H - H_{min}$ is the average Kullback-Leibler divergence across all $N$ fireflies.
 
 
 
