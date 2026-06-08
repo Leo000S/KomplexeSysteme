@@ -32,12 +32,12 @@
     \subsection*{(b)}
     Given that the probability of a firefly emitting light is $\langle t_i\rangle=p_i$, the complementary event is $\langle1- t_i\rangle=1-p_i$. As the expectation operator is linear, we can substitute these expected values into the cross-entropy formula:
     \begin{align}
-    H= \langle H_S \rangle=−\frac{1}{N}\sum^N_{i=1}\left(\langle t_i\rangle \text{log}_2(q_i)+(\langle 1− t_i\rangle)\text{log}_2(1−q_i)\right)
+    H= \langle H_S \rangle= - \frac{1}{N}\sum^N_{i=1}\left(\langle t_i\rangle \text{log}_2(q_i)+(\langle 1 - t_i\rangle)\text{log}_2(1 - q_i)\right)
     \end{align}
     
     Substituting $\langle t_i\rangle=p_i$ yields the final expectation value:
     \begin{align}
-        H =−\frac{1}{N}\sum^N_{i=1}(p_i\text{log}_2(q_i)+(1−p_i)\text{log}_2(1−q_i))
+        H = - \frac{1}{N}\sum^N_{i=1}(p_i\text{log}_2(q_i)+(1 - p_i)\text{log}_2(1 - q_i))
     \end{align}
 
     \subsection*{(c)}
@@ -97,8 +97,10 @@
 \section*{Task 8.2: Cross Entropy}
 
     \subsection*{(a)}
+    Now, we do not consider $N$ individual experiments (like the fireflies), so the sum $ \sum_{i=1}^N$ is neglected. In 8.1, we had two summands for the two possible outcomes light and no light. In this task, this is replaced by the sum
+    $\sum_{\mu=1}^M$ over all $M$ possible results.
     \begin{align}
-        \mathcal{E}= -\sum_{\mu=1}^M p_\mu(\Vec{x}) \ln{q_\mu(\Vec{x})}
+        \mathcal{E}= - \sum_{\mu=1}^M p_\mu(\Vec{x}) \ln{q_\mu(\Vec{x})}
     \end{align}
 
     \subsection*{(b)}
@@ -125,19 +127,24 @@
     To find the extremum, we take the partial derivative of $\mathcal{L}$ with respect to a specific predicted probability $q_\mu$ and set it to zero:
     \begin{align}
     \frac{\partial \mathcal{L}}{\partial q_\mu} &= -\frac{p_\mu}{q_\mu} + \lambda = 0\\[0.2cm]
-    \Rightarrow q_\mu&=\frac{p_\mu}{\lambda}
+    \Rightarrow q_\mu&=\frac{p_\mu}{\lambda} \label{qmu}
     \intertext{now sum both sides over all possible outcomes}
-    \sum_{\mu=1}^{M} q_\mu = \sum_{\mu=1}^{M} \frac{p_\mu}{\lambda}
+    \sum_{\mu=1}^{M} q_\mu = \frac{1}{\lambda} \sum_{\mu=1}^{M} p_\mu
     \intertext{now we apply the constraint $\sum_{\mu=1}^{M} q_\mu = 1$:}
-    1= \sum_{\mu=1}^{M} \frac{p_\mu}{\lambda}
+    1= \frac{1}{\lambda} \sum_{\mu=1}^{M} p_\mu
     \intertext{Since $p$ is a true probability distribution, its probabilities also sum to 1 ($\sum_{\mu=1}^{M} p_\mu = 1$):}
     1 = \frac{1}{\lambda} (1) \Rightarrow \lambda = 1
     \end{align}
-    Substituting $\lambda = 1$ back into the expression for $q_\mu$:
+    Substituting $\lambda = 1$ back into the expression \eqref{qmu} for $q_\mu$:
     \begin{align}
         q_\mu = p_\mu \quad \forall \mu \in \{1 \dots M\}
     \end{align}
-
+    With this, we know that the minimum coincides with the fact, that the calculated probability distribution ${q_\mu}$ is equal to the actual distribution ${p_\mu}$.
+    To show that this is a global minimum, we calculate the second derivative
+    \begin{align}
+        \frac{\partial^2 \mathcal{L}}{\partial q_\mu^2} = \frac{p_\mu}{q_\mu^2} \gtrsim 0
+    \end{align}
+    The resulting components are not negative for all events $\mu$, so we obtain again a global minimum.
 
 \end{document}
 
