@@ -22,12 +22,130 @@
 
 \section*{10.1: Density matrix of a single qubit}
 \subsection*{(a)}
+A general $2×2$ density matrix $\rho$ for a qubit can be written as:
+\begin{align*}
+    \rho=
+    \begin{pmatrix}
+      \rho_{11}&\rho_{12}\\ 
+      \rho_{21}&\rho_{22}
+    \end{pmatrix}
+\end{align*}
+It must be hermitian$(\rho_{12}=\rho_{21}^*)$ and have a unit trace $(\text{Tr}(ρ)=\rho_{11}+\rho_{22}=1)$. We can parametrize it using a real number a and a complex number c:
+\begin{align}
+    \rho=
+    \begin{pmatrix}
+      a&c\\ 
+      c^*&1-a
+    \end{pmatrix}
+\end{align}
+
+The expectation value of an operator M is given by $⟨M⟩=\text{Tr}(ρM)$. We use the given expectation values to find the unknown variables:
+
+1. Using $⟨A⟩=2$:
+\begin{align}
+    A&=
+    \begin{pmatrix}
+      3&0\\ 
+      0&1
+    \end{pmatrix}\\[0.2cm]
+    \text{Tr}(ρA)&=\text{Tr}
+    \begin{pmatrix}
+    3a&c\\
+    3c^*&1-a
+    \end{pmatrix}
+    =3a+(1−a)=2a+1\\[0.2cm]
+    2&=2a+1 \Rightarrow a=\frac{1}{2} 
+\end{align}
+Thus, the diagonal entries are $\rho_{11}=\frac{1}{2}$ and $\rho_{22}=1−\frac{1}{2}=\frac{1}{2}$.
+
+2. Using $⟨B⟩=\frac{1}{2}$:
+\begin{align}
+    B&=
+    \begin{pmatrix}
+      1&1\\ 
+      1&-1
+    \end{pmatrix}\\[0.2cm]
+    \text{Tr}(ρB)&=\text{Tr}
+    \begin{pmatrix}
+    \frac{1}{2}+c&\frac{1}{2}-c\\
+    c^*+\frac{1}{2}&c^*-\frac{1}{2}
+    \end{pmatrix}
+    =\left(\frac{1}{2}+c\right)+\left(c^*-\frac{1}{2}\right)=c+c^*=2\text{Re}(c)\\[0.2cm]
+    0&=4\text{Im}(c) \Rightarrow \text{Im}(c)=0 
+\end{align}
+
+3. Using ⟨C⟩=0:
+\begin{align}
+    C&=
+    \begin{pmatrix}
+      0&2i\\ 
+      -2i&0
+    \end{pmatrix}\\[0.2cm]
+    \text{Tr}(ρC)&=\text{Tr}
+    \begin{pmatrix}
+    -2ic&i\\
+    -i&2ic^*
+    \end{pmatrix}
+    =\text{Tr}(ρC)=−2ic+2ic^∗=2i(c^∗−c)=2i(−2i\text{Im}(c))=4\text{Im}(c)\\[0.2cm]
+    \frac{1}{2}&=2\text{Re}(c) \Rightarrow \text{Re}(c)=\frac{1}{2} 
+\end{align}
+
+So the density matrix is:
+\begin{align}
+    \rho=
+    \begin{pmatrix}
+        \frac{1}{2}&\frac{1}{4}\\
+        \frac{1}{4}&\frac{1}{2}
+    \end{pmatrix}
+    =
+    \frac{1}{4}
+    \begin{pmatrix}
+        2&1\\
+        1&2
+    \end{pmatrix}
+\end{align}
 
 \subsection*{(b)}
+\begin{align}
+    \rho^2&=
+    \frac{1}{16}
+    \begin{pmatrix}
+        2&1\\
+        1&2
+    \end{pmatrix}
+    \begin{pmatrix}
+        2&1\\
+        1&2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        5&4\\
+        4&5
+    \end{pmatrix}\\[0.2cm]
+    \text{Tr}(\rho^2)&=\frac{5}{16}+\frac{5}{16}=\frac{5}{8}\\[0.2cm]
+    \Rightarrow\text{Tr}(\rho^2)&<1 \Rightarrow \text{the ensemble is mixed}
+\end{align}
 
 \subsection*{(c)}
+The Pauli-z operator is $\sigma_z=\begin{pmatrix}
+1&0\\
+0&-1
+\end{pmatrix}$. The eigenvalue +1 corresponds to the computational basis state $∣0⟩=\begin{pmatrix}
+1\\
+0
+\end{pmatrix}$.
+The probability of obtaining an outcome corresponding to a projection operator $P=∣0⟩⟨0∣$ is given by the top-left element of the density matrix ($\rho_{11}$):
+\begin{align}
+    P(+1)=\langle0|\rho|0\rangle=\rho_{11}=\frac{1}{2}
+\end{align}
+The probability to get +1 is 50\%.
 
 \subsection*{(d)}
+\begin{align}
+    \langle\sigma_x\rangle&=\text{Tr}(\rho\sigma_x)= \frac{1}{4}+\frac{1}{4}=\frac{1}{2}\\
+    \langle\sigma_y\rangle&=\text{Tr}(\rho\sigma_y)= -i\frac{1}{4}+i\frac{1}{4}= 0\\
+    \langle\sigma_z\rangle&=\text{Tr}(\rho\sigma_z)= \frac{1}{2}-\frac{1}{2}= 0
+\end{align}
 
 
 \section*{10.2: Criterion for the equivalence of ensembles}
