@@ -14,7 +14,7 @@
 \usepackage{amssymb}%braket schreibweise
 \setlength{\parindent}{0pt}
 
-\title{Physics of Complex Systems: Exercise 9}
+\title{Physics of Complex Systems: Exercise 10}
 \author{Leopold Schaller and Daniel Lender}
 
 \begin{document}
@@ -30,7 +30,7 @@ A general $2×2$ density matrix $\rho$ for a qubit can be written as:
       \rho_{21}&\rho_{22}
     \end{pmatrix}
 \end{align*}
-It must be hermitian$(\rho_{12}=\rho_{21}^*)$ and have a unit trace $(\text{Tr}(ρ)=\rho_{11}+\rho_{22}=1)$. We can parametrize it using a real number a and a complex number c:
+It must be hermitian$(\rho_{12}=\rho_{21}^*)$ and have a unit trace $(\text{Tr}(ρ)=\rho_{11}+\rho_{22}=1)$. We can parametrize it using a real number $a$ and a complex number c:
 \begin{align}
     \rho=
     \begin{pmatrix}
@@ -40,57 +40,58 @@ It must be hermitian$(\rho_{12}=\rho_{21}^*)$ and have a unit trace $(\text{Tr}(
 \end{align}
 
 The expectation value of an operator M is given by $⟨M⟩=\text{Tr}(ρM)$. We use the given expectation values to find the unknown variables:
-
-with $⟨A⟩=2$:
+\begin{itemize}
+    \item Observable $A$:
 \begin{align}
-    A&=
+    & A=
     \begin{pmatrix}
       3&0\\ 
       0&1
     \end{pmatrix}\\[0.2cm]
-    \text{Tr}(ρA)&=\text{Tr}
+    & \text{Tr}(ρA)=\text{Tr}
     \begin{pmatrix}
     3a&c\\
     3c^*&1-a
     \end{pmatrix}
     =3a+(1−a)=2a+1\\[0.2cm]
-    2&=2a+1 \Rightarrow a=\frac{1}{2} 
+    & 2=2a+1 \Rightarrow a=\frac{1}{2}
 \end{align}
 Thus, the diagonal entries are $\rho_{11}=\frac{1}{2}$ and $\rho_{22}=1−\frac{1}{2}=\frac{1}{2}$.
 
-with $⟨B⟩=\frac{1}{2}$:
+    \item Observable $B$:
 \begin{align}
-    B&=
+    & B=
     \begin{pmatrix}
       1&1\\ 
       1&-1
     \end{pmatrix}\\[0.2cm]
-    \text{Tr}(ρB)&=\text{Tr}
+    & \text{Tr}(ρB) =\text{Tr}
     \begin{pmatrix}
     \frac{1}{2}+c&\frac{1}{2}-c\\
     c^*+\frac{1}{2}&c^*-\frac{1}{2}
     \end{pmatrix}
     =\left(\frac{1}{2}+c\right)+\left(c^*-\frac{1}{2}\right)=c+c^*=2\text{Re}(c)\\[0.2cm]
-    0&=4\text{Im}(c) \Rightarrow \text{Im}(c)=0 
+    & \frac{1}{2}=2\text{Re}(c) \Rightarrow \text{Re}(c)=\frac{1}{4}
 \end{align}
 
-with $⟨C⟩$=0:
+\item Observable $C$:
 \begin{align}
-    C&=
+    & C=
     \begin{pmatrix}
       0&2i\\ 
       -2i&0
     \end{pmatrix}\\[0.2cm]
-    \text{Tr}(ρC)&=\text{Tr}
+    & \text{Tr}(ρC) =\text{Tr}
     \begin{pmatrix}
     -2ic&i\\
     -i&2ic^*
     \end{pmatrix}
     =\text{Tr}(ρC)=−2ic+2ic^∗=2i(c^∗−c)=2i(−2i\text{Im}(c))=4\text{Im}(c)\\[0.2cm]
-    \frac{1}{2}&=2\text{Re}(c) \Rightarrow \text{Re}(c)=\frac{1}{2} 
+    & 0=4\text{Im}(c) \Rightarrow \text{Im}(c)=0
 \end{align}
+    \end{itemize}
 
-So the density matrix is:
+So the density with $a=1/2$ and $c=1/4$ matrix is:
 \begin{align}
     \rho=
     \begin{pmatrix}
@@ -117,7 +118,7 @@ So the density matrix is:
         2&1\\
         1&2
     \end{pmatrix}
-    =
+    = \frac{1}{16}
     \begin{pmatrix}
         5&4\\
         4&5
@@ -142,6 +143,7 @@ The probability of obtaining an outcome corresponding to a projection operator $
 Therefore the probability to get +1 is 50\%.
 
 \subsection*{(d)}
+We use the density matrix and the pauli matrices to calculate the traces of the matrix products $\rho \sigma_i$:
 \begin{align}
     \langle\sigma_x\rangle&=\text{Tr}(\rho\sigma_x)= \frac{1}{4}+\frac{1}{4}=\frac{1}{2}\\
     \langle\sigma_y\rangle&=\text{Tr}(\rho\sigma_y)= -i\frac{1}{4}+i\frac{1}{4}= 0\\
@@ -152,31 +154,187 @@ Therefore the probability to get +1 is 50\%.
 \section*{10.2: Criterion for the equivalence of ensembles}
 \subsection*{(a)}
 \begin{align}
-    ρ_{\psi}=\sum_{i=1}^Np_i∣ψ_i⟩⟨ψ_i∣\\
-    ρ_{k}=\sum_{i=1}^K\lambda_k∣k⟩⟨k∣
+    ρ_{\psi} &=\sum_{i=1}^Np_i∣ψ_i⟩⟨ψ_i∣\\
+    ρ_{k} &=\sum_{i=1}^K\sqrt{\lambda_{ k}} ∣k⟩⟨k∣
 \end{align}
-Look at a state $|\phi\rangle$, that is orthogonal to $\rho_k$ (meaning $\rho_k|\phi\rangle=0$), therefore $\rho_\psi|\phi\rangle=0$, now we look closer at the expectation value $\langle\rho\rangle$:
+Look at a state $|\phi\rangle$, that is orthogonal to span$(\{∣k⟩\})$ (meaning $\rho_k|\phi\rangle=0$), therefore $\rho_\psi|\phi\rangle=0$. Now we look closer at the expectation value $\langle\rho\rangle$:
 \begin{align}
     \langle\phi|\rho|\phi\rangle=\sum_{i=1}^Np_i\langle\phi|\psi_i\rangle\langle\psi_i|\phi\rangle=\sum_{i=1}^Np_i|\langle\phi|\psi_i\rangle|^2=0
-    \intertext{Because the probabilities $p_i$ are strictly positive $(p_i>0)$ and the squared magnitudes $|\langle\phi|\psi_i\rangle|^2$ are non-negative, the only way the sum can equal zero is if every individual term is zero:}
+    \intertext{Because the probabilities $p_i$ are strictly positive $(p_i>0)$ and the squared magnitudes $|\langle\phi|\psi_i\rangle|^2$ are non-negative, the only way the sum equals zero is, if every individual term is zero:}
     |\langle\phi|\psi_i\rangle|^2=0 \Rightarrow \langle\phi|\psi_i\rangle=0 \hspace{1cm}\text{for all i}
 \end{align}
 
-Since any vector $∣ϕ⟩$ orthogonal to $\rho_k$ (and therefore to span$(\{∣k⟩\})$) is also orthogonal to every $∣ψ_i⟩$, it follows that the vectors $∣ψ_i⟩$ must lie entirely within the subspace spanned by the eigenvectors.
+Since any vector $∣ϕ⟩$ orthogonal to $\rho_k$ (and therefore to span$(\{∣k⟩\})$ is also orthogonal to every $∣ψ_i⟩$, it follows that the vectors $∣ψ_i⟩$ must lie entirely within the subspace spanned by the eigenvectors.
 
 Thus, each $∣ψ_i⟩$ can be written as a linear combination of the eigenvectors $∣k⟩$:
 \begin{align}
     |\psi_i\rangle\in\text{span}(\{|k\rangle\})
 \end{align}
 \subsection*{(b)}
+We insert
+\begin{equation}
+    \sqrt{p_i} |\psi_i\rangle = \sum_{k=1}^K c_{ik} \sqrt{\lambda_{ k}}  |k\rangle
+\end{equation}
+into the definition of the density matrices $\rho = \sum_{i=1}^N p_i |\psi_i\rangle \langle \psi_i|$
+\begin{equation}
+    \rho = \sum_{i=1}^N \left( \sum_{k=1}^K c_{ik} \sqrt{\lambda_{ k}} |k\rangle \right) \left( \sum_{l=1}^K c_{il}^* \sqrt{\lambda_{l}}  \langle l| \right) = \sum_{k=1}^K \sum_{l=1}^K \left( \sum_{i=1}^N p_i c_{ik} c_{il}^* \sqrt{\lambda_{ k}}  \sqrt{\lambda_{ l}}  \right) |k\rangle \langle l|
+\end{equation}
 
+This has to be identical to the definition $\rho = \sum_{k=1}^K \lambda_{ k}  |k\rangle \langle k|$. We use the Kronecker-Delta $\delta_{k,l}$ for better comparison:
+\begin{equation}
+    \sum_{k=1}^K \sum_{l=1}^K \left( \sum_{i=1}^N p_i c_{ik} c_{il}^* \sqrt{\lambda_{ k}}  \sqrt{\lambda_{ l}}  \right) |k\rangle \langle l| = \sum_{k=1}^K \sum_{l=1}^K \lambda_{ k} \delta_{k,l} |k\rangle \langle l|
+\end{equation}
+The coefficients of both sums have to be the same
+\begin{equation}
+    \sum_{i=1}^N p_i c_{ik} c_{il}^* \sqrt{\lambda_{ k}}  \sqrt{\lambda_{ l}}  = \lambda_k \delta_{k,l}
+\end{equation}
+If we divide this equation with $\sqrt{\lambda_{ k}} \sqrt{\lambda_{ l}}$, we observe the orthonormality condition for the coefficients:
+\begin{equation}
+    \sum_{i=1}^N p_i c_{ik} c_{il}^*  = \lambda_k \delta_{k,l} \frac{1}{\sqrt{\lambda_{ k}} \sqrt{\lambda_{ l}}} = \delta_{k,l}
+\end{equation}
+Under this constraint, we can rewrite every vector $|\psi_i\rangle$ and obtain the same density matrix $\rho$
 \subsection*{(c)}
+The relation derived in part (b) implies that the $K$ columns of the rectangular $N \times K$ matrix act as $K$ orthonormal vectors $\vec{c}_k$ in the $N$-dimensional vector space, but do not yet span the entire space.
+According to the basis extension theorem, any orthonormal system can be completed to a full orthonormal basis by adding $N-K$ orthonormal vectors $\vec{c}_{K+1}, \dots, \vec{c}_N$ (e.g., via the Gram-Schmidt process).
 
+By appending these $N-K$ columns, we construct a square $N \times N$ matrix $U$ satisfying:
+\begin{equation}
+    (U^\dagger U)_{mn} = \sum_{i=1}^N c_{im} c_{in}^* = \delta_{m,n} \quad \text{for all } m,n = 1, \dots, N
+\end{equation}
+Since the original $K$ columns were left untouched, the relation proven in (b) still holds for the original index range $1, \dots, K$.
 \subsection*{(d)}
+We assume that there exists a unitary $N \times N$ matrix $c_{ik}$ such and the ensemble states are given by:
+\begin{equation}
+    \sqrt{p_i} |\psi_i \rangle &= \sum_{k=1}^N c_{ik} \sqrt{\lambda_k} |k\rangle \\
+    \sqrt{p_i} \langle \psi_i | &= \sum_{l=1}^N c_{il}^* \sqrt{\lambda_l} \langle l |
+\end{equation}
+
+We now calculate the density matrix $\rho_\psi$ of this ensemble:
+\begin{align}
+    \rho_\psi &= \sum_{i=1}^N p_i |\psi_i\rangle \langle \psi_i| = \sum_{i=1}^N \left( \sqrt{p_i} |\psi_i\rangle \right) \left( \sqrt{p_i} \langle \psi_i | \right) \\
+    &= \sum_{i=1}^N \left( \sum_{k=1}^N c_{ik} \sqrt{\lambda_k} |k\rangle \right) \left( \sum_{l=1}^N c_{il}^* \sqrt{\lambda_l} \langle l | \right) \\
+    &= \sum_{k=1}^N \sum_{l=1}^N \sqrt{\lambda_k \lambda_l} |k\rangle \langle l| \left( \sum_{i=1}^N c_{ik} c_{il}^* \right)
+\end{align}
+
+Since the matrix $c_{ik}$ is unitary ($U^\dagger U = \mathbb{I}$), its columns are orthonormal, meaning $\sum_{i=1}^N c_{ik} c_{il}^* = \delta_{k,l}$. With this, the equation simplyfies and we get
+\begin{equation}
+    \rho_\psi = \sum_{k=1}^N \sum_{l=1}^N \sqrt{\lambda_k \lambda_l} \delta_{k,l} |k\rangle \langle l| = \sum_{k=1}^N \lambda_k |k\rangle \langle k| = \rho_k
+\end{equation}
+
+This demonstrates, that any such unitary transformation ends in the exact same density matrix.
 
 \subsection*{(e)}
+We want to express the probabilities $p_i$ in terms of the eigenvalues $\lambda_k$ via $p_i = \sum_{k=1}^N T_{ik} \lambda_k$.
+We write again the states in both representations with the results of part (d)
+\begin{align}
+    p_i \langle \psi_i | \psi_i \rangle &= \left( \sum_{l=1}^N c_{il}^* \sqrt{\lambda_l} \langle l | \right) \left( \sum_{k=1}^N c_{ik} \sqrt{\lambda_k} |k\rangle \right) \\
+    &= \sum_{k=1}^N \sum_{l=1}^N c_{ik} c_{il}^* \sqrt{\lambda_k \lambda_l} \langle l | k \rangle
+\end{align}
+Since the states $\{|k\rangle\}$ are orthonormal and the ensemble states $| \psi_i \rangle$ are normalized, this simplifies to:
+\begin{equation}
+    p_i = \sum_{k=1}^N |c_{ik}|^2 \lambda_k
+\end{equation}
+By defining the matrix elements $T_{ik} := |c_{ik}|^2$, we get the desired form:
+\begin{equation}
+    p_i = \sum_{k=1}^N T_{ik} \lambda_k \quad \text{or concisely} \quad \vec{p} = T \vec{\lambda}
+\end{equation}
+
+The matrix $T$ is doubly-stochastic because it satisfies:
+\begin{itemize}
+    \item Every entry are trivialy real and non-negative.
+    \begin{equation}
+        T_{ik} = |c_{ik}|^2 \ge 0
+    \end{equation}
+    \item The rows and colums are normalized due to the condition $\sum_{i=1}^N c_{ik} c_{il}^* = \delta_{k,l}$. E.g. the columns of $c_{ik}$ are normalized:
+    \begin{equation}
+        \sum_{i=1}^N T_{ik} = \sum_{i=1}^N c_{ik} c_{ik}^* = \delta_{k,k} = 1
+    \end{equation}
+\end{itemize}
+Thus, $T$ is mathematically a doubly-stochastic matrix.
 
 \subsection*{(f)}
+We use the following code in a jupiter notebook to calculate all needed informations:
+\begin{minted}{python}
+import sympy as sp
+
+# definition of p1, p2 and vectors
+p1 = sp.Rational(1, 2)
+p2 = sp.Rational(1, 2)
+
+psi1 = sp.Matrix([1/sp.sqrt(2), 1/sp.sqrt(2)])
+psi2 = sp.Matrix([1, 0])
+
+# Density matrix
+rho = sp.simplify(p1 * (psi1 * psi1.H) + p2 * (psi2 * psi2.H))
+print("Rho:",sp.latex(rho))
+
+# spectral decomposition
+eigen_data = rho.eigenvects()
+
+lambda1, _, v1_list = eigen_data[0]
+lambda2, _, v2_list = eigen_data[1]
+
+k1 = v1_list[0].normalized()
+k2 = v2_list[0].normalized()
+
+print("\nSpectral decomposition:",)
+print(f"lambda_1 = {lambda1}")
+print(f"lambda_2 = {lambda2}")
+print(sp.simplify(k1), sp.simplify(k2))
+
+# coefficient matrix
+c = sp.Matrix.zeros(2, 2)
+
+c[0, 0] = sp.simplify(sp.sqrt(p1) * (k1.H * psi1)[0] / sp.sqrt(lambda1))
+c[0, 1] = sp.simplify(sp.sqrt(p1) * (k2.H * psi1)[0] / sp.sqrt(lambda2))
+c[1, 0] = sp.simplify(sp.sqrt(p2) * (k1.H * psi2)[0] / sp.sqrt(lambda1))
+c[1, 1] = sp.simplify(sp.sqrt(p2) * (k2.H * psi2)[0] / sp.sqrt(lambda2))
+
+print("\nCoefficient matrix:",)
+print(sp.latex(c))
+
+T = sp.Matrix([[sp.Abs(c[0,0])**2, sp.Abs(c[0,1])**2],
+               [sp.Abs(c[1,0])**2, sp.Abs(c[1,1])**2]])
+T = sp.simplify(T)
+
+print("\nT matrix:")
+print(sp.latex(c))
+
+# Verification
+p_vec = sp.simplify(T * sp.Matrix([lambda1, lambda2]))
+print("\np vector check:")
+print(sp.latex(p_vec))
+print(p_vec)
+\end{minted}
+The results are the following:
+\begin{itemize}
+    \item The density matrix $\rho$ is:
+    \begin{align}
+        \rho = \left[\begin{matrix}\frac{3}{4} & \frac{1}{4}\\\frac{1}{4} & \frac{1}{4}\end{matrix}\right]
+    \end{align}
+    \item The spectral decomposition with the normalized eigenvectors is:
+    \begin{align}
+        \lambda_1 &= 1/2 - \sqrt{2}/4 \\
+        \lambda_2 &= 1/2 + \sqrt{2}/4 \\
+        \ket{1} &= \left[\begin{matrix}\frac{-2 + \sqrt{2}}{2 \sqrt{2 - \sqrt{2}}}\\\frac{\sqrt{2}}{2 \sqrt{2 - \sqrt{2}}}\end{matrix}\right]\\
+        \ket{2} &= \left[\begin{matrix}\frac{\sqrt{\sqrt{2} + 2}}{2}\\\frac{\sqrt{2}}{2 \sqrt{\sqrt{2} + 2}}\end{matrix}\right]
+        \end{align}
+    \item The coefficient matrix $C$ is:
+    \begin{align}
+        C = \left[\begin{matrix}\frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2}\\- \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2}\end{matrix}\right]
+    \end{align}
+    \item The matrix $T$ is
+    \begin{align}
+        T = \left[\begin{matrix}\frac{1}{2} & \frac{1}{2}\\\frac{1}{2} & \frac{1}{2}\end{matrix}\right]
+    \end{align}
+        and it has positive coefficients and the sums of the rows and columns equal 1.
+    \item From this, we recalculate the probability vector to check, if everything worked out well:
+    \begin{align}
+        \vec{p} = T \vec{\lambda} = \left[\begin{matrix}\frac{1}{2}\\\frac{1}{2}\end{matrix}\right]
+    \end{align}
+    We observe exactly the probabilities, we gave as a input in the beginning.
+\end{itemize}
+
 
 \end{document}
 # lualatex -shell-escape exercise10_schaller_lender.tex
