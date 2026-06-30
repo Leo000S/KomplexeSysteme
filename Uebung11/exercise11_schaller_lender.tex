@@ -14,7 +14,7 @@
 \usepackage{amssymb}%braket schreibweise
 \setlength{\parindent}{0pt}
 
-\title{Physics of Complex Systems: Exercise 10}
+\title{Physics of Complex Systems: Exercise 11}
 \author{Leopold Schaller and Daniel Lender}
 
 \begin{document}
@@ -115,15 +115,152 @@ This means, $\rho$ is not entangled.
 
 \section*{11.2: Quantum Cryptography}
 \subsection*{(a)}
+We distinguish the four possible combinations of Alice's preparation and Bob's measurement:
 
+\begin{itemize}
+    \item \textbf{Case $a=0$, $b=0$:} Alice sends $|0\rangle$ and Bob measures with $M_0$. Since
+    \[
+    M_0|0\rangle = |0\rangle,
+    \]
+    the outcome is always $m=+1$. Hence, $m=-1$ cannot occur.
+
+    \item \textbf{Case $a=0$, $b=1$:} Alice sends $|0\rangle$ and Bob measures with $M_1$. Using
+    \[
+    |0\rangle=\frac{|+\rangle+|-\rangle}{\sqrt{2}},
+    \]
+    Bob obtains $m=-1$ with probability $1/2$.
+
+    \item \textbf{Case $a=1$, $b=0$:} Alice sends $|+\rangle$ and Bob measures with $M_0$. Since
+    \[
+    |+\rangle=\frac{|0\rangle+|1\rangle}{\sqrt{2}},
+    \]
+    the outcome $m=-1$ occurs with probability $1/2$.
+
+    \item \textbf{Case $a=1$, $b=1$:} Alice sends $|+\rangle$ and Bob measures with $M_1$. Since
+    \[
+    M_1|+\rangle = |+\rangle,
+    \]
+    the outcome is always $m=+1$, so $m=-1$ cannot occur.
+\end{itemize}
+
+Therefore, the outcome $m=-1$ is only possible for the two cases
+\[
+(a,b)=(0,1)\quad\text{and}\quad(a,b)=(1,0),
+\]
+which implies
+\[
+\boxed{a=1-b.}
+\]
 \subsection*{(b)}
+A key bit is obtained only in rounds where Bob obtains the outcome $m=-1$,
+since only then Alice and Bob can conclude from part (a) that $a=1-b$.
+We compute the success probability by using the cases from part (a).
+
+Each pair $(a,b)$ occurs with probability $1/4$. From part (a), we know that
+\[
+P(m=-1 \mid a=0,b=0)=0,\qquad P(m=-1 \mid a=1,b=1)=0,
+\]
+while
+\[
+P(m=-1 \mid a=0,b=1)=\frac{1}{2},\qquad P(m=-1 \mid a=1,b=0)=\frac{1}{2}.
+\]
+
+Hence, the total success probability is
+\[
+P(m=-1)=\frac{1}{4}\cdot 0 + \frac{1}{4}\cdot \frac{1}{2}
++ \frac{1}{4}\cdot \frac{1}{2} + \frac{1}{4}\cdot 0
+= \frac{1}{4}.
+\]
+
+Since each transmission uses one qubit,
+the average number of qubits needed to obtain one successful key bit is the
+inverse of the success probability:
+\[
+\boxed{\langle N \rangle = \frac{1}{P(m=-1)} = 4.}
+\]
 
 \subsection*{(c)}
+Eve performs a measurement in the orthonormal basis
+\[
+|\phi_+\rangle=\alpha|0\rangle+\beta|1\rangle,\qquad
+|\phi_-\rangle=\beta^*|0\rangle-\alpha^*|1\rangle,
+\]
+with $|\alpha|^2+|\beta|^2=1$. After Eve's measurement, the state collapses to
+$|\phi_\pm\rangle$ and is measured by Bob. The resulting
+probabilities are obtained with the following calculations.
+
+Consider the case where Alice sends $|0\rangle$ and Bob measures
+with $M_0$. The probability of obtaining the outcome $m=-1$ is
+\[
+\begin{aligned}
+P(m=-1)
+&=P(\phi_+)P(m=-1|\phi_+) + P(\phi_-)P(m=-1|\phi_-)\\
+&=|\langle\phi_+|0\rangle|^2\,|\langle1|\phi_+\rangle|^2
+ +|\langle\phi_-|0\rangle|^2\,|\langle1|\phi_-\rangle|^2\\
+&=|\alpha|^2|\beta|^2+|\beta|^2|\alpha|^2\\
+&=2|\alpha|^2(1-|\alpha|^2).
+\end{aligned}
+\]
+
+Introducing
+\[
+u:=|\alpha|^2,
+\]
+this becomes
+\[
+P(m=-1)=2u(1-u).
+\]
+
+For the second relevant case, where Alice sends $|0\rangle$ and Bob measures
+with $M_1$, one obtains
+\[
+\begin{aligned}
+P(m=-1)
+&=|\langle\phi_+|0\rangle|^2\,|\langle-|\phi_+\rangle|^2
+ +|\langle\phi_-|0\rangle|^2\,|\langle-|\phi_-\rangle|^2\\
+&=\frac12|\alpha|^2|\beta-\alpha|^2
++\frac12|\beta|^2|\beta+\alpha|^2\\
+\end{aligned}
+\]
+
+Defining
+\[
+v:=\frac12|\alpha+\beta|^2,
+\]
+and using $ \frac12 |\alpha-\beta|^2=1-v$ we obtain
+\[
+P(m=-1)= u (1-v) + v (1-u) = v + u - 2 u v.
+\]
+
+The remaining two cases are due to analogous derivations
+\[
+P(m=-1\,|\,a=1,b=0)=v + u - 2 u v,\qquad
+P(m=-1\,|\,a=1,b=1)=2u(1-u).
+\]
+
+We see that Eve modifies Bob's measurement statistics, which depend
+only on two parameters
+\[
+\boxed{u=|\alpha|^2,\qquad
+v=\frac12|\alpha+\beta|^2.}
+\]
 
 \subsection*{(d)}
-
+Alice and Bob will not recognize the intervention of Eve, if the statistics stay the same.
+To obtain the same statistic, we have two conditions for the probabilities:
+\[
+P(m=-1\,|\,a=b)= v + u - 2 u v = 0.5,\qquad
+P(m=-1\,|\,a\ne b)=2u(1-u) = 0.
+\]
+This implies, that u is $u=0$ or $u=1$. For the two cases, we obtain
+\begin{itemize}
+    \item $u=0$: $P(m=-1\,|\,a=b)= v + 0 - 2 0 v = 0.5 \implies v = 0.5$
+    \item $u=1$: $P(m=-1\,|\,a=b)= v + 1 - 2 v = 1-v = 0.5 \implies v = 0.5$
+\end{itemize}
+For both cases, Eve will measure in the $|0\rangle |1\rangle$ basis.
 \subsection*{(e)}
-
-
+In the case of (d), Eve can not detect the $|+\rangle$ probably. When she measures this state, it will colapse in $|0\rangle$ or $|1\rangle$.
+She wont get well defined result due to the different probabilities.
+This means, that Eve will lose about $50\%$ of the keys information.
 \end{document}
 # lualatex -shell-escape exercise11_schaller_lender.tex
