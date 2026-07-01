@@ -118,36 +118,36 @@ This means, $\rho$ is not entangled.
 We distinguish the four possible combinations of Alice's preparation and Bob's measurement:
 
 \begin{itemize}
-    \item \textbf{Case $a=0$, $b=0$:} Alice sends $|0\rangle$ and Bob measures with $M_0$. Since
+    \item two options for a=b: 
+    
+    (1) \textbf{Case $a=0$, $b=0$:} Alice sends $|0\rangle$ and Bob measures with $M_0$. Since
     \[
     M_0|0\rangle = |0\rangle,
     \]
-    the outcome is always $m=+1$. Hence, $m=-1$ cannot occur.
-
-    \item \textbf{Case $a=0$, $b=1$:} Alice sends $|0\rangle$ and Bob measures with $M_1$. Using
-    \[
-    |0\rangle=\frac{|+\rangle+|-\rangle}{\sqrt{2}},
-    \]
-    Bob obtains $m=-1$ with probability $1/2$.
-
-    \item \textbf{Case $a=1$, $b=0$:} Alice sends $|+\rangle$ and Bob measures with $M_0$. Since
-    \[
-    |+\rangle=\frac{|0\rangle+|1\rangle}{\sqrt{2}},
-    \]
-    the outcome $m=-1$ occurs with probability $1/2$.
-
-    \item \textbf{Case $a=1$, $b=1$:} Alice sends $|+\rangle$ and Bob measures with $M_1$. Since
+    
+    (2) \textbf{Case $a=1$, $b=1$:} Alice sends $|+\rangle$ and Bob measures with $M_1$. Since
     \[
     M_1|+\rangle = |+\rangle,
     \]
-    the outcome is always $m=+1$, so $m=-1$ cannot occur.
-\end{itemize}
+    
+    In both cases, the outcome is always $m=+1$.
 
-Therefore, the outcome $m=-1$ is only possible for the two cases
-\[
-(a,b)=(0,1)\quad\text{and}\quad(a,b)=(1,0),
-\]
-which implies
+    \item two options for a $\neq$ b
+    
+    (1) \textbf{Case $a=0$, $b=1$:} Alice sends $|0\rangle$ and Bob measures with $M_1$. Using
+    \[
+    |0\rangle=\frac{|+\rangle+|-\rangle}{\sqrt{2}},
+    \]
+    
+    (2) \textbf{Case $a=1$, $b=0$:} Alice sends $|+\rangle$ and Bob measures with $M_0$. Since
+    \[
+    |+\rangle=\frac{|0\rangle+|1\rangle}{\sqrt{2}},
+    \]
+    
+    In both cases the outcome $m=-1$ occurs with the probability $1/2$.
+\end{itemize}
+ 
+Therefore, the outcome $m=-1$ is only possible if a $\neq$ b. Since a and b are either 0 or 1, this is equivalent to 
 \[
 \boxed{a=1-b.}
 \]
@@ -185,82 +185,67 @@ Eve performs a measurement in the orthonormal basis
 |\phi_+\rangle=\alpha|0\rangle+\beta|1\rangle,\qquad
 |\phi_-\rangle=\beta^*|0\rangle-\alpha^*|1\rangle,
 \]
-with $|\alpha|^2+|\beta|^2=1$. After Eve's measurement, the state collapses to
+with
+\begin{align}
+    |\alpha|^2+|\beta|^2&=1\\
+    u:=|\alpha|^2 \hspace{1cm}& v=\frac{1}{2}|\alpha+\beta|^2\\
+    \Rightarrow |\beta|^2=1-u \hspace{1cm}& \frac{1}{2}|\alpha-\beta|^2=1-v
+\end{align}    
+After Eve's measurement, the state collapses to
 $|\phi_\pm\rangle$ and is measured by Bob. The resulting
 probabilities are obtained with the following calculations.
 
 Consider the case where Alice sends $|0\rangle$ and Bob measures
-with $M_0$. The probability of obtaining the outcome $m=-1$ is
-\[
-\begin{aligned}
-P(m=-1)
-&=P(\phi_+)P(m=-1|\phi_+) + P(\phi_-)P(m=-1|\phi_-)\\
+with $M_0$. The probabilities of obtaining the outcome $m=-1$ for $a=b$ are
+\begin{align}
+P(m=-1|a=b=0)
 &=|\langle\phi_+|0\rangle|^2\,|\langle1|\phi_+\rangle|^2
- +|\langle\phi_-|0\rangle|^2\,|\langle1|\phi_-\rangle|^2\\
++|\langle\phi_-|0\rangle|^2\,|\langle1|\phi_-\rangle|^2\\
 &=|\alpha|^2|\beta|^2+|\beta|^2|\alpha|^2\\
-&=2|\alpha|^2(1-|\alpha|^2).
-\end{aligned}
-\]
+&=2|\alpha|^2|\beta|^2\\
+&=2u(1-u)\\[0.5cm]
+P(m=-1|a=b=1)
+&=|\langle\phi_+|+\rangle|^2\,|\langle-|\phi_+\rangle|^2
++|\langle\phi_-|+\rangle|^2\,|\langle-|\phi_-\rangle|^2\\
+&=\frac{1}{4}|\alpha+\beta|^2|\alpha-\beta|^2+\frac{1}{4}|\alpha-\beta|^2|\alpha+\beta|^2\\
+&=\frac{1}{2}|\alpha+\beta|^2|\alpha-\beta|^2\\
+&=2v(1-v)
+\end{align}
 
-Introducing
-\[
-u:=|\alpha|^2,
-\]
-this becomes
-\[
-P(m=-1)=2u(1-u).
-\]
+The probabilities of obtaining the outcome $m=-1$ for $a\neq b$ are
 
-For the second relevant case, where Alice sends $|0\rangle$ and Bob measures
-with $M_1$, one obtains
-\[
-\begin{aligned}
-P(m=-1)
+\begin{align}
+P(m=-1|a=0, b=1)
 &=|\langle\phi_+|0\rangle|^2\,|\langle-|\phi_+\rangle|^2
  +|\langle\phi_-|0\rangle|^2\,|\langle-|\phi_-\rangle|^2\\
 &=\frac12|\alpha|^2|\beta-\alpha|^2
 +\frac12|\beta|^2|\beta+\alpha|^2\\
-\end{aligned}
-\]
+&=u+v-2uv\\[0.5cm]
+P(m=-1|a=1, b=0)
+&=|\langle\phi_+|+\rangle|^2\,|\langle1|\phi_+\rangle|^2
+ +|\langle\phi_-|+\rangle|^2\,|\langle1|\phi_-\rangle|^2\\
+&=\frac12|\alpha+\beta|^2|\beta|^2
++\frac12|\alpha-\beta|^2|\alpha|^2\\
+&=u+v-2uv\\
+\end{align}
 
-Defining
-\[
-v:=\frac12|\alpha+\beta|^2,
-\]
-and using $ \frac12 |\alpha-\beta|^2=1-v$ we obtain
-\[
-P(m=-1)= u (1-v) + v (1-u) = v + u - 2 u v.
-\]
-
-The remaining two cases are due to analogous derivations
-\[
-P(m=-1\,|\,a=1,b=0)=v + u - 2 u v,\qquad
-P(m=-1\,|\,a=1,b=1)=2u(1-u).
-\]
-
-We see that Eve modifies Bob's measurement statistics, which depend
-only on two parameters
-\[
-\boxed{u=|\alpha|^2,\qquad
-v=\frac12|\alpha+\beta|^2.}
-\]
+We see that Eve modifies Bob's measurement statistics, which depend only on the two parameters $u=|\alpha|^2$ and $v=\frac12|\alpha+\beta|^2$.
 
 \subsection*{(d)}
 Alice and Bob will not recognize the intervention of Eve, if the statistics stay the same.
 To obtain the same statistic, we have two conditions for the probabilities:
-\[
-P(m=-1\,|\,a=b)= v + u - 2 u v = 0.5,\qquad
-P(m=-1\,|\,a\ne b)=2u(1-u) = 0.
-\]
-This implies, that u is $u=0$ or $u=1$. For the two cases, we obtain
-\begin{itemize}
-    \item $u=0$: $P(m=-1\,|\,a=b)= v + 0 - 2 0 v = 0.5 \implies v = 0.5$
-    \item $u=1$: $P(m=-1\,|\,a=b)= v + 1 - 2 v = 1-v = 0.5 \implies v = 0.5$
-\end{itemize}
-For both cases, Eve will measure in the $|0\rangle |1\rangle$ basis.
+\begin{align}
+P(m=-1\,|\,a=b=0)=2u(1-u) = 0 
+\intertext{$\Rightarrow$ $u=1$ or $u=0$}
+P(m=-1\,|\,a=b=1)=2v(1-v) = 0
+\intertext{$\Rightarrow$ $v=1$ or $v=0$}
+P(m=-1\,|\,a\neq b)= v + u - 2 u v = 0.5
+\intertext{$\Rightarrow$ $v=u=\frac12$ or $v=\frac12$ and $u=0$ or $v=0$ and $u=\frac12$}
+\end{align}
+
+This shows, that it's not possible to find any values for $u$ and $v$, where the probabilities for every outcome will stay the same and thus where the interception isn't detectable.
+
 \subsection*{(e)}
-In the case of (d), Eve can not detect the $|+\rangle$ probably. When she measures this state, it will colapse in $|0\rangle$ or $|1\rangle$.
-She wont get well defined result due to the different probabilities.
-This means, that Eve will lose about $50\%$ of the keys information.
+(d) showed, that it is impossible for Eve to gain any information about the key, without altering the statistics, i.e., being detected.  
 \end{document}
 # lualatex -shell-escape exercise11_schaller_lender.tex
