@@ -70,7 +70,98 @@ print("Eigenvalues for N=3, lambda=0.8:\n", np.round(eigenvalues, 4))
 \end{minted}
 
 \subsection*{(c)}
+We expand the code from (b) with 
+\begin{minted}{python}
+
+import matplotlib.pyplot as plt
+Ns = [2, 4, 6, 8, 10, 12]
+lambdas = [0.8, 1.0, 1.2]
+
+#dictionary to hold computed gaps
+gaps_dict = {lam: [] for lam in lambdas}
+
+#compute gaps
+for lam in lambdas:
+    print(f"Computing gaps for lambda = {lam}...")
+    for N in Ns:
+        H = get_ising_hamiltonian(N, lam)
+
+        #compute eigenvalues for a hermitian matrix
+        eigenvalues = np.linalg.eigvalsh(H)
+
+        eigenvalues = np.sort(eigenvalues)
+
+        #difference between the lowest two eigenvalues
+        gap = eigenvalues[1] - eigenvalues[0]
+        gaps_dict[lam].append(gap)
+
+#plotting double-log
+plt.figure(figsize=(8, 6))
+
+for lam in lambdas:
+    plt.loglog(Ns, gaps_dict[lam], 'o-', label=f'$\lambda = {lam}$')
+
+plt.xlabel('System Size (N)')
+plt.ylabel('$\Delta_N$')
+plt.xticks(Ns, [str(n) for n in Ns])  
+plt.grid(True, which="both", ls="--", alpha=0.5)
+plt.legend()
+plt.show()
+\end{minted}
+
+And get this plot: 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\linewidth]{KS12-1-c.png}
+    \caption{Enter Caption}
+    \label{fig:placeholder}
+\end{figure}
+
+We see, that the line is almost straight for the case $\lambda=1$. At this value the system is at it's quantum critical point. The energy gap scales as a power-law with the system size: $\Delta_N \propto N^{-z}$ (where $z=1$). On a log-log plot, a power-law relation mathematically converts into a perfectly straight line: $\ln(\Delta_N) \approx -1 \cdot \ln(N) + \text{constant}$.
+
 \subsection*{(d)}
+With small code adjustments: 
+\begin{minted}{python}
+Ns = [2, 4, 6, 8, 10, 12]
+lam = 1.0
+gaps = {}
+
+# 1. Compute all required gaps at the critical point lambda = 1
+for N in Ns:
+    H = get_ising_hamiltonian(N, lam)
+    eigenvalues = np.linalg.eigvalsh(H)
+    gap = eigenvalues[1] - eigenvalues[0]
+    gaps[N] = gap
+
+# 2. Compute the negative discrete logarithmic derivative nu(N)
+print(f"{'N':<5} | {'nu(N)':<10}")
+print("-" * 18)
+
+for N in [2, 4, 6, 8, 10]:
+    delta_N = gaps[N]
+    delta_N_plus_2 = gaps[N + 2]
+
+    # Formula: nu(N) = -ln[Delta_(N+2) / Delta_N] / ln[(N+2)/N]
+    nu_N = -np.log(delta_N_plus_2 / delta_N) / np.log((N + 2) / N)
+    print(f"{N:<5} | {nu_N:.6f}")
+\end{minted}
+We get 
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|c}
+         N& $\nu$  \\
+         \hline
+         2&  1.058242\\
+         4&  1.017840\\
+         6&  1.008741\\
+         8&  1.005202\\
+         10& 1.003454
+    \end{tabular}
+    \caption{}
+    \label{tab:placeholder}
+\end{table}\\
+
+This sequence hints that $\nu=\lim_{N\to\infty}\nu(N)=1$.
 
 \section*{12.2: DP mean field approximation}
 \subsection*{(a)}
@@ -79,4 +170,4 @@ print("Eigenvalues for N=3, lambda=0.8:\n", np.round(eigenvalues, 4))
 \subsection*{(d)}
 
 \end{document}
-# lualatex -shell-escape exercise11_schaller_lender.tex
+# lualatex -shell-escape exercise12_schaller_lender.tex
