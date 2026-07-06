@@ -35,7 +35,7 @@ import numpy as np
 def get_ising_hamiltonian(N, lam):
 #pauli matrices
     sx = np.array([[0, 1], [1, 0]], dtype=complex)
-    sz = np.array([[1, 0], [0, -1]], dtype=complex
+    sz = np.array([[1, 0], [0, -1]], dtype=complex)
                  
 #construct 2^N x 2^N matrix representing an operator acting on a specific site
     def get_site_operator(op, site):
@@ -72,7 +72,7 @@ print("Eigenvalues for N=3, lambda=0.8:\n", np.round(eigenvalues, 4))
 \subsection*{(c)}
 We expand the code from (b) with 
 \begin{minted}{python}
-
+import numpy as np
 import matplotlib.pyplot as plt
 Ns = [2, 4, 6, 8, 10, 12]
 lambdas = [0.8, 1.0, 1.2]
@@ -112,7 +112,7 @@ plt.show()
 And get this plot: 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.6\linewidth]{KS12-1-c.png}
+    \includegraphics[width=0.6\linewidth]{KS12-1-c10.png}
     \caption{Enter Caption}
     \label{fig:placeholder}
 \end{figure}
@@ -122,6 +122,7 @@ We see, that the line is almost straight for the case $\lambda=1$. At this value
 \subsection*{(d)}
 With small code adjustments: 
 \begin{minted}{python}
+import numpy as np
 Ns = [2, 4, 6, 8, 10, 12]
 lam = 1.0
 gaps = {}
@@ -165,9 +166,122 @@ This sequence hints that $\nu=\lim_{N\to\infty}\nu(N)=1$.
 
 \section*{12.2: DP mean field approximation}
 \subsection*{(a)}
+For a homogeneous ($\nabla^2\rho = 0$) and stationary ($\dot{\rho} = 0$) state, the equation simplifies to:
+\begin{equation}
+    0 = \lambda\rho_{\text{stat}}(1 - \rho_{\text{stat}}) - \rho_{\text{stat}} = \rho_{\text{stat}} \left[ \lambda(1 - \rho_{\text{stat}}) - 1 \right]
+\end{equation}
+We obtain two distinct fixed points $\rho^*$:
+\begin{align}
+    \rho_1^* &= 0 \\
+    \rho_2^* &= 1 - \frac{1}{\lambda}
+\end{align}
+Since density must be non-negative ($\rho \ge 0$), the active solution $\rho_2^*$ exists for $\lambda \ge 1$. Consequently, the critical point is:
+\begin{equation}
+    \lambda_c = 1
+\end{equation}
+
+To test the stability, we define the the function $\dot{\rho}(t) = f(\rho) = (\lambda - 1)\rho - \lambda\rho^2$. We introduce a small perturbation $\epsilon(t)$ around a fixed point $\rho^*$ ($\rho = \rho^* + \epsilon(t)$). With this, we can write the differential equation
+\begin{equation}
+    \dot{\rho}(t) = \frac{d}{dt} (\rho^* + \epsilon(t)) = f(\rho^* + \epsilon(t)) \approx f(\rho^*) + \frac{d}{d \rho} \epsilon(t) = \frac{d}{d \rho} f \epsilon(t) \text{ ,}
+\end{equation}
+where we have used the Taylor approximation and that $\rho^*$ is a fixed point ($f(\rho^*)=0$). The derivative of $f(\rho)$ is:
+\begin{equation}
+    f'(\rho) = \frac{\partial f}{\partial \rho} = \lambda - 1 - 2\lambda\rho
+\end{equation}
+We can now conclude from the derivation above, that
+\begin{equation}
+    \dot{\epsilon(t)} = \frac{d}{d \rho} f \epsilon(t)
+\end{equation}
+This means, that we need a negative derivative $\frac{d}{d \rho} f$ to have a stable state, because then the pertubation $\epsilon$ will get smaller. We look at all possible combination for the stationary densities:
+\begin{itemize}
+    \item \text{For $\rho_1^* = 0$:}
+    \begin{equation}
+        f'(0) = \lambda - 1
+    \end{equation}
+    If $\lambda < \lambda_c = 1$, then $f'(0) < 0 \implies$ \text{Stable}.\\
+    If $\lambda > \lambda_c = 1$, then $f'(0) > 0 \implies$ \text{Unstable}.
+
+    \item \text{For $\rho_2^* = 1 - \frac{1}{\lambda}$ (defined only for $\lambda > 1$):}
+    \begin{equation}
+        f'\left(1 - \frac{1}{\lambda}\right) = \lambda - 1 - 2\lambda\left(1 - \frac{1}{\lambda}\right) = 1 - \lambda
+    \end{equation}
+    Since $\lambda > 1$, it follows that $f'(\rho_2^*) < 0$ always holds in this regime $\implies$ \text{Stable}.
+\end{itemize}
+
 \subsection*{(b)}
+From part (a), we know that for the active phase ($\lambda > \lambda_c = 1$), the stable stationary density is:
+\begin{equation}
+    \rho_{\text{stat}} = 1 - \frac{1}{\lambda} = \frac{\lambda - 1}{\lambda}
+\end{equation}
+
+To find the scaling behavior very close to the critical point, we add a small pertubation $\lambda = 1 + \Delta \lambda$. With the geometric series, we find the scaling in first order:
+\begin{equation}
+    \rho_{\text{stat}} = \frac{\Delta \lambda}{1 + \Delta \lambda} = \Delta \lambda \left[ 1 + \Delta \lambda + (\Delta \lambda)^2 + ... \right] = \Delta \lambda = \left( \lambda - 1 \right)^1
+\end{equation}
+
+By comparing this result with the scaling relation $\rho_{\text{stat}} \sim (\lambda - 1)^\beta$, we find the critical exponent:
+\begin{equation}
+    \beta = 1
+\end{equation}
 \subsection*{(c)}
+Setting $\lambda = 1$ and $\nabla^2\rho = 0$ in the mean-field equation, we obtain:
+\begin{equation}
+    \dot{\rho} = 1 \cdot \rho(1 - \rho) - \rho = \rho - \rho^2 - \rho = -\rho^2
+\end{equation}
+This is a separable ordinary differential equation:
+\begin{equation}
+    \frac{1}{\rho^2} d\rho = -dt
+\end{equation}
+Integrating both sides gives:
+\begin{equation}
+    -\frac{1}{\rho(t)} = -t + C \implies \rho(t) = \frac{1}{t - C}
+\end{equation}
+where $C$ is a constant of integration determined by the initial condition. In the long-time limit ($t \gg |C|$), the constant $C$ becomes negligible, yielding the asymptotic power-law decay:
+\begin{equation}
+    \rho(t) \approx t^{-1}
+\end{equation}
+We find the critical decay exponent $\delta = 1$
+
 \subsection*{(d)}
+At the critical point $\lambda = 1$, the mean-field equation is given by:
+\begin{equation}
+    \frac{\partial \rho}{\partial t} = -\rho^2 + D \frac{\partial^2 \rho}{\partial x^2}
+\end{equation}
+We test the scaling ansatz for the Green's function $\rho(x,t) = G(x,t) = t^{-1} f(\eta)$ with the variable $\eta = \frac{x^2}{t}$. First, we compute the required partial derivatives for $t > 0$:
+
+\begin{enumerate}
+    \item
+    \begin{equation}
+        \frac{\partial G}{\partial t} = -t^{-2} f(\eta) + t^{-1} f'(\eta) \frac{\partial \eta}{\partial t} = -t^{-2} f(\eta) + t^{-1} f'(\eta) \left( -\frac{x^2}{t^2} \right) = -t^{-2} \left[ f(\eta) + \eta f'(\eta) \right]
+    \end{equation}
+
+    \item
+    \begin{equation}
+        \frac{\partial G}{\partial x} = t^{-1} f'(\eta) \frac{\partial \eta}{\partial x} = t^{-1} f'(\eta) \left( \frac{2x}{t} \right) = 2x t^{-2} f'(\eta)
+    \end{equation}
+    \begin{equation}
+        \frac{\partial^2 G}{\partial x^2} = t^{-2} \frac{\partial}{\partial x} \left( 2x f'(\eta) \right) = t^{-2} \left[ 2 f'(\eta) + 4\frac{x^2}{t} f''(\eta) \right] = t^{-2} \left[ 2 f'(\eta) + 4\eta f''(\eta) \right]
+    \end{equation}
+
+    \item
+    \begin{equation}
+        G^2 = t^{-2} f(\eta)^2
+    \end{equation}
+\end{enumerate}
+
+Substituting these derivatives back into the partial differential equation, we obtain:
+\begin{equation}
+    -t^{-2} \left[ f(\eta) + \eta f'(\eta) \right] = -t^{-2} f(\eta)^2 + D t^{-2} \left[ 2 f'(\eta) + 4\eta f''(\eta) \right]
+\end{equation}
+Since $t > 0$, we can eliminate any explicit time dependence:
+\begin{equation}
+    f(\eta) + \eta f'(\eta) = f(\eta)^2 - 2D f'(\eta) - 4D\eta f''(\eta)
+\end{equation}
+Rearranging the terms leads to an autonomous ordinary differential equation for $f(\eta)$:
+\begin{equation}
+    4D\eta f''(\eta) + (2D + \eta) f'(\eta) + f(\eta) - f(\eta)^2 = 0
+\end{equation}
+Because the differential equation is now written purely in terms of $\eta = x^2/t$ for the function $f(\eta)$, the scaling transformation is proven.
 
 \end{document}
 # lualatex -shell-escape exercise12_schaller_lender.tex
