@@ -112,7 +112,7 @@ plt.show()
 And get this plot: 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.6\linewidth]{KS12-1-c10.png}
+    \includegraphics[width=0.6\linewidth]{KSEx12_1c.png}
     \caption{Enter Caption}
     \label{fig:placeholder}
 \end{figure}
@@ -182,7 +182,7 @@ Since density must be non-negative ($\rho \ge 0$), the active solution $\rho_2^*
 
 To test the stability, we define the the function $\dot{\rho}(t) = f(\rho) = (\lambda - 1)\rho - \lambda\rho^2$. We introduce a small perturbation $\epsilon(t)$ around a fixed point $\rho^*$ ($\rho = \rho^* + \epsilon(t)$). With this, we can write the differential equation
 \begin{equation}
-    \dot{\rho}(t) = \frac{d}{dt} (\rho^* + \epsilon(t)) = f(\rho^* + \epsilon(t)) \approx f(\rho^*) + \frac{d}{d \rho} \epsilon(t) = \frac{d}{d \rho} f \epsilon(t) \text{ ,}
+    \dot{\rho}(t) = \frac{d}{dt} (\rho^* + \epsilon(t)) = f(\rho^* + \epsilon(t)) \approx f(\rho^*) + \frac{df}{d \rho} \epsilon(t) = \frac{df}{d \rho}  \epsilon(t) \text{ ,}
 \end{equation}
 where we have used the Taylor approximation and that $\rho^*$ is a fixed point ($f(\rho^*)=0$). The derivative of $f(\rho)$ is:
 \begin{equation}
@@ -190,7 +190,7 @@ where we have used the Taylor approximation and that $\rho^*$ is a fixed point (
 \end{equation}
 We can now conclude from the derivation above, that
 \begin{equation}
-    \dot{\epsilon(t)} = \frac{d}{d \rho} f \epsilon(t)
+    \dot{\rho}(t) = \frac{d}{dt} (\rho^* + \epsilon(t))=\dot{\epsilon}(t) = \frac{d}{d \rho} f \epsilon(t)
 \end{equation}
 This means, that we need a negative derivative $\frac{d}{d \rho} f$ to have a stable state, because then the pertubation $\epsilon$ will get smaller. We look at all possible combination for the stationary densities:
 \begin{itemize}
@@ -214,9 +214,9 @@ From part (a), we know that for the active phase ($\lambda > \lambda_c = 1$), th
     \rho_{\text{stat}} = 1 - \frac{1}{\lambda} = \frac{\lambda - 1}{\lambda}
 \end{equation}
 
-To find the scaling behavior very close to the critical point, we add a small pertubation $\lambda = 1 + \Delta \lambda$. With the geometric series, we find the scaling in first order:
+To find the scaling behavior very close to the critical point, we conduct a Taylor expansion around the point $\lambda=\lambda_c=1$, we find the scaling in first order:
 \begin{equation}
-    \rho_{\text{stat}} = \frac{\Delta \lambda}{1 + \Delta \lambda} = \Delta \lambda \left[ 1 + \Delta \lambda + (\Delta \lambda)^2 + ... \right] = \Delta \lambda = \left( \lambda - 1 \right)^1
+    \rho_{\text{stat}}(\lambda) = \rho(1)+\rho'(1)(\lambda-1) +\frac{\rho''(1)}{2!}(\lambda-1)^2+...\approx 0+ \frac{1}{1^2}(\lambda-1) = \left( \lambda - 1 \right)^1
 \end{equation}
 
 By comparing this result with the scaling relation $\rho_{\text{stat}} \sim (\lambda - 1)^\beta$, we find the critical exponent:
